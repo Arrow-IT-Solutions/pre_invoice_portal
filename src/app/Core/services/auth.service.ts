@@ -11,7 +11,7 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
   userResponse: UserResponse;
-  constructor(public layoutService: LayoutService, public localService: LocalService,public tokenService : TokenService) {}
+  constructor(public layoutService: LayoutService, public localService: LocalService, public tokenService: TokenService) { }
 
   async Auth(auth: AuthRequest) {
     const config = {
@@ -20,6 +20,7 @@ export class AuthService {
 
     return await Axios.post(`${environment.baseApiUrl}/api/authintication/auth`, auth, config)
       .then((res) => {
+        console.log('HERE')
         this.tokenService.setToken(res.data.token);
         this.tokenService.setRefreshToken(res.data.token);
         return res.data;
