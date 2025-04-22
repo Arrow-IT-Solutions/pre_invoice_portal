@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  //baseApiUrl: 'https://quattro-dev-api.apps-jo.com',
-  baseApiUrl: "https://localhost:49853"
+  baseApiUrl: "https://invoice-dev-api.apps-jo.com"
 };
 
-//https://quattro-dev-api.apps-jo.com
+
+// https://invoice-dev-api.apps-jo.com
