@@ -35,6 +35,13 @@ const routes: Routes = [
     component: ContentLayoutAdminComponent,
     // canActivate: [AuthGuardService],
     children: [
+      {
+        path: 'home',
+        loadChildren: () =>
+          import('./modules/home/home.module').then(
+            (m) => m.HomeModule
+          )
+      },
       // {
       //   path: 'clients',
       //   loadChildren: () =>

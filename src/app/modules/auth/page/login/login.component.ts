@@ -63,6 +63,8 @@ export class LoginComponent implements AfterViewInit {
   }
 
   async Save() {
+
+
     var authRequest: AuthRequest = {
       userName: this.loginForm.controls['UserName'].value,
       password: this.loginForm.controls['Password'].value,
@@ -96,11 +98,11 @@ export class LoginComponent implements AfterViewInit {
 
       switch (response.userType) {
         case '0':
-          this.router.navigateByUrl('layout-admin/dashBoard'); // admin or user
+          this.router.navigateByUrl('layout-admin/home'); // admin or user
           break;
 
         case '1':
-          this.router.navigateByUrl('layout-admin/dashBoard'); // cashier
+          this.router.navigateByUrl('layout-admin/home'); // cashier
           break;
       }
 
