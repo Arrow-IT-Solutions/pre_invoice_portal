@@ -1,0 +1,142 @@
+<div class="container">
+    <div class="types">
+      <span id="tittle">{{'Types' | translate}}</span>
+        <div class="mt-3 products">
+            <div class="box-shadow mt-2">
+              <div class="productName d-flex gap-1">
+                <span id="value">books</span>
+              </div>
+              <div class="productPrice d-flex gap-1">
+                <span id="value">120 $</span>
+              </div>
+              
+                <button class="add-button mt-1">+
+                </button>
+              
+            </div>
+            <div class="box-shadow mt-2">
+              <div class="productName d-flex gap-1">
+               
+                <span id="value">books</span>
+              </div>
+              <div class="productPrice d-flex gap-1">
+                
+                <span id="value">120 $</span>
+              </div>
+              <button class="add-button mt-1">+
+              </button>
+            </div>
+           
+      
+          </div>
+    </div>
+    <div class="biilDetailes">
+      <div  class="row mb-4 m-0  p-0">
+        <div class="container">
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+            <div class="p-float-label dropdown">
+              <p-dropdown  [options]="invoiceType"  optionLabel="value" optionValue="key" 
+               ></p-dropdown>
+              <label>{{ 'invoiceType' | translate }}</label>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+              <div class="p-float-label">
+                <p-calendar [showIcon]="true"></p-calendar>
+                <label>{{ 'invoiceDate' | translate }}</label>
+              </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 mt-3">
+              <div class="p-float-label">
+                    <input  type="text" pInputText />
+                       <label>{{ 'clientAccount' | translate }}</label>
+              </div>
+          </div>
+         
+          <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 mt-3">
+              <div class="p-float-label dropdown">
+                <p-dropdown [options]="taxType" optionLabel="value" optionValue="key"
+                 ></p-dropdown>
+                <label>{{ 'taxType' | translate }}</label>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 mt-3">
+              <div class="p-float-label">
+                <input  type="text" pInputText />
+                <label>{{ 'invoiceStatus' | translate }}</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-3">
+              <div class="p-float-label">
+                <textarea pInputText ></textarea>
+                <label>{{ 'notes' | translate }}</label>
+              </div>
+            </div>
+           
+          
+        </div>
+       
+    
+      </div>
+      <p-table [value]="product" editable="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{'productName' | translate}}</th>
+            <th>{{'productUnity' | translate}}</th>
+            <th>{{'TaxRate' | translate}}</th>
+            <th>{{'productQuantity' | translate}}</th>
+            <th>{{'productprice' | translate}}</th>
+            <th>{{'productDiscount' | translate}}</th>
+            <th>{{'Total' | translate}}</th>
+
+          
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-columns="columns">
+          <tr>
+            <td>tablet</td>
+            <td><input id="input" pInputText [(ngModel)]="product.unity" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.tax" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.quantity" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.price" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.discount" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.tatal" /></td>
+
+          </tr>
+          <tr>
+            <td></td>
+            <td><input id="input" pInputText [(ngModel)]="product.unity" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.tax" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.quantity" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.price" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.discount" /></td>
+            <td><input id="input" pInputText [(ngModel)]="product.tatal" /></td>
+
+          </tr>
+         
+        </ng-template>
+      </p-table>
+      <div class="all d-flex">
+        <div class="total">
+          {{ "totalinvoice" | translate }}:300
+        </div>
+       
+        <div class="total">
+          {{ "discounts" | translate }}:12%
+        </div>
+        <div class="total">
+          {{ "salesTax" | translate }}:5%
+        </div>
+        <div class="total">
+          {{ "Total" | translate }}:277
+        </div>
+       
+        
+      </div>
+      <div class="save col-xs-12 text-end">
+        <p-button type="Submit" class="btn-primary" label="save" [loading]="btnLoading"></p-button>
+      </div>
+    </div>
+</div>

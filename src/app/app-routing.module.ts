@@ -36,124 +36,20 @@ const routes: Routes = [
     // canActivate: [AuthGuardService],
     children: [
       {
-        path: 'home',
+        path: 'invoices',
         loadChildren: () =>
-          import('./modules/home/home.module').then(
-            (m) => m.HomeModule
+          import('./modules/invoices/invoices.module').then(
+            (m) => m.InvoicesModule
           )
       },
-      // {
-      //   path: 'clients',
-      //   loadChildren: () =>
-      //     import('./modules/clients/clients.module').then(
-      //       (m) => m.ClientsModule
-      //     )
-      // },
-      // {
-      //   path: 'Advertisement',
-      //   loadChildren: () =>
-      //     import('./modules/advertisement/advertisement.module').then(
-      //       (m) => m.AdvertisementModule
-      //     )
-      // },
-      // {
-      //   path: 'employees',
-      //   loadChildren: () =>
-      //     import('./modules/employees/employees.module').then(
-      //       (m) => m.EmployeesModule
-      //     )
-      // },
-      // {
-      //   path: 'categories',
-      //   loadChildren: () =>
-      //     import('./modules/categories/categories.module').then(
-      //       (m) => m.CategoriesModule
-      //     )
-      // },
-      // {
-      //   path: 'dashBoard',
-      //   loadChildren: () =>
-      //     import('./modules/dashboard/dashboard.module').then(
-      //       (m) => m.DashboardModule
-      //     )
-      // },
-      // {
-      //   path: 'category-event',
-      //   loadChildren: () =>
-      //     import('./modules/category-event/category-event.module').then(
-      //       (m) => m.CategoryEventModule
-      //     )
-      // },
-      // {
-      //   path: 'events',
-      //   loadChildren: () =>
-      //     import('./modules/events/events.module').then(
-      //       (m) => m.EventsModule
-      //     )
-      // },
-      // {
-      //   path: 'feedback',
-      //   loadChildren: () =>
-      //     import('./modules/feedback/feedback.module').then(
-      //       (m) => m.FeedbackModule
-      //     )
-      // },
-      // {
-      //   path: 'notification',
-      //   loadChildren: () =>
-      //     import('./modules/notification/notification.module').then(
-      //       (m) => m.NotificationModule
-      //     )
-      // },
-      // {
-      //   path: 'rewards',
-      //   loadChildren: () =>
-      //     import('./modules/rewards/rewards.module').then(
-      //       (m) => m.RewardsModule
-      //     )
-      // },
-      // {
-      //   path: 'password',
-      //   loadChildren: () =>
-      //     import('./modules/Password/password.module').then(
-      //       (m) => m.PasswordModule
-      //     )
-      // },
-      // {
-      //   path: 'category-group',
-      //   loadChildren: () =>
-      //     import('./modules/category-group/category-group.module').then(
-      //       (m) => m.CategoryGroupModule
-      //     )
-      // },
-      // {
-      //   path: 'group-item',
-      //   loadChildren: () =>
-      //     import('./modules/group-item/group-item.module').then(
-      //       (m) => m.GroupItemModule
-      //     )
-      // },
-      // {
-      //   path: 'earned',
-      //   loadChildren: () =>
-      //     import('./modules/earned/earned.module').then(
-      //       (m) => m.EarnedModule
-      //     )
-      // },
-      // {
-      //   path: 'transfer',
-      //   loadChildren: () =>
-      //     import('./modules/transfer/transfer.module').then(
-      //       (m) => m.TransferModule
-      //     )
-      // },
-      // {
-      //   path: 'redeem-history',
-      //   loadChildren: () =>
-      //     import('./modules/redeem-history/redeem-history.module').then(
-      //       (m) => m.RedeemHistoryModule
-      //     )
-      // },
+      {
+        path: 'products',
+        loadChildren: () =>
+          import('./modules/products/products.module').then(
+            (m) => m.ProductsModule
+          )
+      },
+    
 
     ],
   },
