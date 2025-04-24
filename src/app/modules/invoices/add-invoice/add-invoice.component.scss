@@ -1,0 +1,121 @@
+@import '../../../../assets/scss/varialbles.scss';
+.container{
+    padding: 1rem 1rem 1rem 0rem;
+    position: relative;
+    display: flex;
+    column-gap: 2rem;
+    @media(max-width:767px){
+        flex-direction: column;
+    }
+    &:lang(ar){
+        padding: 1rem 0 1rem 1rem;
+    }
+    .types{
+        width: 30%;
+        background-color: $white-color;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        max-height: 40rem;
+            overflow-y: auto;
+            @media(max-width:767px){
+               width: 80%;;
+            }
+        #tittle{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .products{
+            
+        }
+        
+        & .box-shadow {
+            border: 1px solid $lighter-gray;
+            border-radius: 6px;
+            padding: 1rem 3rem 1rem 3rem;
+            background-color: $white-color;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        
+            // box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+            span{
+                font-size: 1rem;
+                font-weight: 600;
+                font-family: myfont, myfont-ar;
+            }
+            #value{
+                color: #c0bdbd;
+            }
+            
+      & .add-button {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        border-radius: 50%;
+        color: $white-color;
+        border: none;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       
+        background-color: $primary-color;
+        span{
+            margin: auto;
+        }
+
+        &:lang(ar){
+        
+        }
+      }
+        }
+    }
+    .biilDetailes{
+        width: 70%;
+        @media(max-width:767px){
+            width: 80%;;
+         }
+        #input{
+            padding: 1rem;
+            border: none;
+        }
+        .container{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            @media(max-width:767px){
+               row-gap: 1rem;
+             }
+        }
+        tr{
+            border-bottom: 1px solid #eeeeee;
+        }
+        td{
+            border: 0.5px dotted #eeeeee;
+        }
+    }
+    .all{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+        @media (max-width:767px) {
+            flex-direction: column;
+           align-items: center;
+      
+          }
+    }
+    .save{
+        position: absolute;
+        right: 20px;
+        bottom: -100px;
+        &:lang(ar){
+          left: 20px;
+        }
+    }
+}

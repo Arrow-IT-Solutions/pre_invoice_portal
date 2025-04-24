@@ -314,7 +314,33 @@
   "DescEn_advertise" : "Description in English",
   "NameAr_EventCategory" : "Name in Arabic",
   "NameEn_EventCategory" : "Name in English",
-  "Our_visitors":"Our visitors"
+  "Our_visitors":"Our visitors",
+  "invoiceType":"invoice Type",
+  "Search_invoiceStartDate":"start Date",
+  "Search_invoiceEndDate":"end Date",
+
+  "clientAccount":"client Account",
+  "notes":"notes",
+  "taxType":"tax Type",
+  "invoiceDate":"invoice Date",
+  "invoiceNum":"invoice Number",
+  "invoiceStatus":"invoice Status",
+  "Billing":"Billing",
+  "totalinvoices":"Total Invoices",
+  "discounts":"Discount",
+  "salesTax":"Sales Tax",
+  "Total":"Total",
+  "productName":"product Name",
+  "productUnity":"Unity",
+  "TaxRate":"Tax",
+  "productQuantity":"Quantity",
+  "productprice":"Price",
+  "productDiscount":"Discount",
+  "Types":"Products",
+  "invoiceDate":"invoice Date",
+  "totalinvoice":"Total",
+  "totalproducts":"Total products",
+  "Create_Product":"Create new Product"
 
 
 

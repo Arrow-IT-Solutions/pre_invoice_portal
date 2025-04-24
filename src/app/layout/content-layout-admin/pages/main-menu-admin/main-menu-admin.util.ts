@@ -14,11 +14,18 @@ export interface NavbarData {
 
 export const navbarData: NavbarData[] = [
   {
-    label: 'Dashboard',
-    labelar: 'لوحة التحكم',
-    id: 'dashboard',
-    icon: 'speed',
-    routeLink: 'dashBoard'
+    label: 'Invoices',
+    labelar: 'الفواتير',
+    id: 'Invoices',
+    icon: 'receipt',
+    routeLink: 'invoices'
+  },
+  {
+    label: 'Products',
+    labelar: 'الأصناف',
+    id: 'Products',
+    icon: 'category',
+    routeLink: 'products'
   },
   {
     label: 'Users',
@@ -42,91 +49,12 @@ export const navbarData: NavbarData[] = [
 
     ]
   },
-  {
-    label: 'Categories',
-    labelar: ' الفئات',
-    id: 'Categories',
-    icon: 'category',
-    routeLink: "categories"
-  },
 
-  {
-    label: 'Advertisement',
-    labelar: 'الإعلانات',
-    id: 'Advertisement',
-    icon: 'dvr',
-    routeLink: "Advertisement"
-  },
 
-  {
-    label: 'Category Event',
-    labelar: ' حدث الفئة',
-    id: 'Category-event',
-    icon: 'event_note',
-    routeLink: "category-event"
-    // call_to_action
-  },
-  {
-    label: 'Events',
-    labelar: ' الأحداث',
-    id: 'events',
-    icon: 'event',
-    routeLink: "events"
-  },
-  {
-    label: 'Notifications',
-    labelar: ' الإشعارات',
-    id: 'notification',
-    icon: 'notifications',
-    routeLink: "notification"
-  },
-  {
-    label: 'FeedBack',
-    labelar: ' الآراء',
-    id: 'feedback',
-    icon: 'Comment',
-    routeLink: "feedback"
-  },
-  {
-    label: 'ٌRewards',
-    labelar: ' المكافآت',
-    id: 'reward',
-    icon: 'star',
-    routeLink: "rewards"
-  },
-  {
-    label: 'ٌCategory Group',
-    labelar: 'مجموعة الفئات',
-    id: 'category-group',
-    icon: 'border_all',
-    routeLink: "category-group"
-  },
-  {
-    label: 'ٌGroup Item',
-    labelar: 'عنصر المجموعة',
-    id: 'group-item',
-    icon: 'line_weight',
-    routeLink: "group-item"
-  },
-  {
-    label: 'ٌEarned',
-    labelar: 'المكاسب',
-    id: 'earned',
-    icon: 'control_point',
-    routeLink: "earned"
-  },
-  {
-    label: 'ٌTransfer',
-    labelar: 'التحويلات',
-    id: 'transfer',
-    icon: 'swap_vert',
-    routeLink: "transfer"
-  },
-  {
-    label: 'ٌRedeem History',
-    labelar: 'الاستردادات',
-    id: 'redeem-history',
-    icon: 'history',
-    routeLink: "redeem-history"
-  },
+ 
+
+  
+
+
+
 ];
