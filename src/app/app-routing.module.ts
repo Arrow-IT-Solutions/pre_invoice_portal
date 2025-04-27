@@ -49,6 +49,27 @@ const routes: Routes = [
             (m) => m.ProductsModule
           )
       },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./modules/settings/settings.module').then(
+            (m) => m.SettingsModule
+          )
+      },
+      {
+        path: 'clients',
+        loadChildren: () =>
+          import('./modules/clients/clients.module').then(
+            (m) => m.ClientsModule
+          )
+      },
+      {
+        path: 'employees',
+        loadChildren: () =>
+          import('./modules/employees/employees.module').then(
+            (m) => m.EmployeesModule
+          )
+      },
     
 
     ],

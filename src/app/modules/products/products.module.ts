@@ -24,6 +24,4 @@ import { ResponseBase } from 'src/app/shared/class/class';
 export class ProductsModule { }
 export interface ProductResponse extends ResponseBase {
 
-
-
 }
