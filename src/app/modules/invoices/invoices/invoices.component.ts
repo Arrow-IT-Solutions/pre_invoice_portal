@@ -36,7 +36,8 @@ export class InvoicesComponent {
       clientAccount:[''],
       notes:[''],
       taxType:[''],
-      invoiceStatus:['']
+      invoiceStatus:[''],
+      invoiceNum:['']
      
     })
   }
