@@ -61,6 +61,8 @@ export class ProductsComponent {
     let filter: ProductSearchRequest = {
       uuid: '',
       name: this.dataForm.controls['productName'].value,
+      pageIndex: pageIndex.toString(),
+      pageSize: this.pageSize.toString()
     };
 
     const response = (await this.productService.Search(filter)) as any;

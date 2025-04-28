@@ -23,13 +23,11 @@ import { AddProductComponent } from './add-product/add-product.component';
 export class ProductsModule { }
 export interface ProductResponse extends ResponseBase {
 
-<<<<<<< HEAD
   uuid?: string;
+  sortID: string,
   productTranslation?: { [key: string]: ProductTranslationResponse };
   price: string,
 
-=======
->>>>>>> 3df7646a5c5d2785ccfdaaccaeb9b41f55e7bbf0
 }
 export interface ProductSearchRequest extends SearchRequestBase {
   uuid?: string;
@@ -39,11 +37,13 @@ export interface ProductSearchRequest extends SearchRequestBase {
 export interface ProductUpdateRequest extends RequestBase {
   productTranslation?: ProductTranslationRequest[];
   price: string,
+  sortID: string
 }
 
 export interface ProductRequest extends RequestBase {
   productTranslation?: ProductTranslationRequest[];
   price: string,
+  sortID: string
 }
 
 export interface ProductTranslationResponse {
