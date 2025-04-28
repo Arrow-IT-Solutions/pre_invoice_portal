@@ -74,7 +74,7 @@
         }
     }
     .biilDetailes{
-        width: 70%;
+        width: 100%;
         @media(max-width:767px){
             width: 80%;;
          }
@@ -93,9 +93,27 @@
         tr{
             border-bottom: 1px solid #eeeeee;
         }
-        td{
+        
+        td,th{
             border: 0.5px dotted #eeeeee;
+            
         }
+       .dropdown{
+        .custom-dropdown .p-dropdown {
+            border: none !important; /* Remove the border */
+            box-shadow: none !important; /* Remove any shadow if present */
+            
+        }
+        .custom-dropdown .p-dropdown .p-dropdown-label {
+            border: none !important; /* Remove border from the label */
+            
+        }
+
+       }
+        
+        
+        
+      
     }
     .all{
         display: flex;
@@ -118,4 +136,6 @@
           left: 20px;
         }
     }
+    
+   
 }
