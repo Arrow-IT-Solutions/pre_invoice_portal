@@ -323,7 +323,7 @@
   "salesTax":"ضريبة المبيعات",
   "Total":"الإجمالي",
   "productName":"اسم المنتج",
-  "productUnity":"الوحدة",
+  "productUnit":"الوحدة",
   "TaxRate":"نسبة الضريبة",
   "productQuantity":"الكمية",
   "productprice":"السعر",
