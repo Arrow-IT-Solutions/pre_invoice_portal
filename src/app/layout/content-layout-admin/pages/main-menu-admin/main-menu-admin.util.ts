@@ -49,6 +49,13 @@ export const navbarData: NavbarData[] = [
 
     ]
   },
+  {
+    label: 'Settings',
+    labelar: 'الإعدادات',
+    id: 'Settings',
+    icon: 'settings',
+    routeLink: 'settings'
+  }
 
 
  

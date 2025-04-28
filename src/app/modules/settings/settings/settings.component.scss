@@ -1,0 +1,80 @@
+@import '../../../../assets/scss/varialbles.scss';
+.settings{
+    padding: 1rem 1rem 2rem 1rem;
+    width: 50%;
+    position: relative;
+    margin: auto;
+    border-radius: 6px;
+    background-color: $white-color;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin-top: 2rem;    
+    font-family: myfont-bold, myfont-ar-bold;
+    
+
+    &:lang(ar){
+        padding: 1rem 1rem 1rem 1rem;
+    }
+    #tittle{
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    .location,.phone ,.email{
+          #info{
+            font-size: 1.2rem;
+            margin-left: 0.5rem;
+            &:lang(ar){
+                margin-right: 0.5rem;
+            }
+          }
+          #latest{
+            font-size: 1.2rem;
+            color: #727070;
+            
+
+          }
+        & .material-symbols-outlined {
+            
+            color: #727070;
+          }
+        
+    }
+    .latestinvoice{
+        #latest{
+            font-size: 1.2rem;
+            color: #727070;
+            font-weight: 500;
+             }
+            #info{
+                font-size: 1.2rem;
+                margin-left: 0.5rem;
+                &:lang(ar){
+                    margin-right: 0.5rem;
+                }
+              
+            }
+        
+    }
+    
+}
+
+.add-button {
+    width: 60px;
+    height: 60px;
+    font-size: $large-icon;
+    border-radius: 50%;
+    color: $white-color;
+    border: none;
+    position: fixed;
+    top: calc(100vh - 85px);
+    right: 1.5rem;
+    background-color: $primary-color;
+
+    &:lang(ar){
+      right: unset;
+      left: 1.5rem;
+    }
+  }
