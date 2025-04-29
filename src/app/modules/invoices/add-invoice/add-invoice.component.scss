@@ -28,9 +28,9 @@
             font-weight: bold;
         }
         .products{
-            
+
         }
-        
+
         & .box-shadow {
             border: 1px solid $lighter-gray;
             border-radius: 6px;
@@ -40,7 +40,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        
+
             // box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
             span{
                 font-size: 1rem;
@@ -50,7 +50,7 @@
             #value{
                 color: #c0bdbd;
             }
-            
+
       & .add-button {
         width: 30px;
         height: 30px;
@@ -61,14 +61,14 @@
        display: flex;
        align-items: center;
        justify-content: center;
-       
+
         background-color: $primary-color;
         span{
             margin: auto;
         }
 
         &:lang(ar){
-        
+
         }
       }
         }
@@ -93,27 +93,39 @@
         tr{
             border-bottom: 1px solid #eeeeee;
         }
-        
+
         td,th{
             border: 0.5px dotted #eeeeee;
-            
+
         }
        .dropdown{
         .custom-dropdown .p-dropdown {
             border: none !important; /* Remove the border */
             box-shadow: none !important; /* Remove any shadow if present */
-            
+
         }
         .custom-dropdown .p-dropdown .p-dropdown-label {
             border: none !important; /* Remove border from the label */
-            
+
         }
 
        }
-        
-        
-        
-      
+
+             .cell-input {
+               width: 100%;
+               box-sizing: border-box; // include padding in that width
+               text-align: right; // align numbers to the right
+               // optional: make overflow visible so you never clip
+               overflow: visible;
+             }
+tr>td:not(:first-child) .p-inputtext {
+  width: 100% !important;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+
+
     }
     .all{
         display: flex;
@@ -125,7 +137,7 @@
         @media (max-width:767px) {
             flex-direction: column;
            align-items: center;
-      
+
           }
     }
     .save{
@@ -136,6 +148,26 @@
           left: 20px;
         }
     }
-    
-   
+
+
+
+
 }
+
+                .table-wrapper {
+                  overflow-x: auto;
+                  /* allow horizontal scroll */
+                }
+
+                .wide-table table {
+                  min-width: 900px;
+                  /* ensure table is wide enough */
+                  table-layout: auto;
+                  /* columns size to their content */
+                }
+
+                .cell-input {
+                  width: 100%;
+                  box-sizing: border-box;
+                  text-align: right;
+                }

@@ -1,122 +1,115 @@
 <div class="container">
-    
-    <div class="biilDetailes">
-      <div  class="row mb-4 m-0  p-0">
+  <div class="biilDetailes">
+    <div class="row mb-4 m-0  p-0">
+      <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
         <div class="container">
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
             <div class="p-float-label dropdown">
-              <p-dropdown  [options]="invoiceType"  optionLabel="value" optionValue="key" 
-               ></p-dropdown>
+              <p-dropdown [options]="invoiceTypes" optionLabel="value" optionValue="key"
+                formControlName="invoiceType"></p-dropdown>
               <label>{{ 'invoiceType' | translate }}</label>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-              <div class="p-float-label">
-                <p-calendar [showIcon]="true"></p-calendar>
-                <label>{{ 'invoiceDate' | translate }}</label>
-              </div>
+            <div class="p-float-label">
+              <p-calendar [showIcon]="true" formControlName="date"></p-calendar>
+              <label>{{ 'invoiceDate' | translate }}</label>
+            </div>
           </div>
-          
+
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-             
-              <div class="p-float-label dropdown">
-                <p-dropdown [options]="" optionLabel="value" optionValue="key"   [filter]="true" 
-                [showClear]="true" 
-                 ></p-dropdown>
-                <label>{{ 'clientAccount' | translate }}</label>
-              </div>
+
+            <div class="p-float-label dropdown">
+              <p-dropdown [options]="clients" optionLabel="fullName" optionValue="uuid" [filter]="true"
+                [showClear]="true" formControlName="client"></p-dropdown>
+              <label>{{ 'clientAccount' | translate }}</label>
+            </div>
           </div>
-         
+
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-              <div class="p-float-label dropdown">
-                <p-dropdown [options]="taxType" optionLabel="value" optionValue="key"
-                 ></p-dropdown>
-                <label>{{ 'taxType' | translate }}</label>
-              </div>
+            <div class="p-float-label dropdown">
+              <p-dropdown [options]="taxTypes" optionLabel="value" optionValue="key"
+                formControlName="taxType"></p-dropdown>
+              <label>{{ 'taxType' | translate }}</label>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-              <div class="p-float-label">
-                <input  type="text" pInputText />
-                <label>{{ 'invoiceStatus' | translate }}</label>
-              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+            <div class="p-float-label">
+              <textarea pInputText formControlName="note"></textarea>
+              <label>{{ 'notes' | translate }}</label>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-              <div class="p-float-label">
-                <textarea pInputText ></textarea>
-                <label>{{ 'notes' | translate }}</label>
-              </div>
-            </div>
-           
-          
+          </div>
         </div>
-       
-    
-      </div>
-      <p-table [value]="product" editable="true">
+      </form>
+    </div>
+
+    <button type="button" (click)="addRow()">+ Add Item</button>
+    <div class="table-wrapper">
+      <p-table [value]="product" editable="true" styleClass="wide-table" [scrollable]="true" scrollWidth="100%">
         <ng-template pTemplate="header">
           <tr>
-            <th id="" style="width: 500px;">
-              <div  class="p-float-label dropdown">
-                <p-dropdown class="custom-dropdown" [options]="" optionLabel="value" optionValue="key"   [filter]="true" 
-                [showClear]="true" 
-                 ></p-dropdown>
-                <label>{{'productName' | translate}}</label>
-              </div>
-              </th>
+            <th id="">{{'productName' | translate}}</th>
             <th>{{'productUnit' | translate}}</th>
             <th>{{'TaxRate' | translate}}</th>
             <th>{{'productQuantity' | translate}}</th>
             <th>{{'productprice' | translate}}</th>
             <th>{{'productDiscount' | translate}}</th>
             <th>{{'Total' | translate}}</th>
-
-          
-
+            <th>{{'Delete' | translate}}</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product let-columns="columns">
+        <ng-template pTemplate="body" let-product let-columns="columns" let-item let-i="rowIndex">
           <tr>
-            <td>tablet</td>
-            <td><input id="input" pInputText [(ngModel)]="product.unity" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.tax" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.quantity" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.price" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.discount" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.tatal" /></td>
-
+            <td>
+              <div class="p-float-label dropdown">
+                <p-dropdown class="custom-dropdown" [options]="products" optionLabel="name" optionValue="uuid"
+                  [filter]="true" [showClear]="true" filterBy="name" [(ngModel)]="item.productIDFK"
+                  placeholder="— {{ 'selectProduct' | translate }} —" (onFilter)="FillProduct($event)"
+                  (onChange)="onProductSelect($event.value, i)"></p-dropdown>
+                <label>{{'productName' | translate}}</label>
+              </div>
+            </td>
+            <td><input class="cell-input" pInputText [(ngModel)]="product.unity" name="unity{{i}}"
+                (ngModelChange)="onItemChange(item)" /></td>
+            <td><input class="cell-input" pInputText [(ngModel)]="item.tax" name="tax{{i}}"
+                (ngModelChange)="onItemChange(item)" /></td>
+            <td><input class="cell-input" pInputText [(ngModel)]="product.quantity" name="qty{{i}}"
+                (ngModelChange)="onItemChange(item)" /></td>
+            <td><input class="cell-input" pInputText [(ngModel)]="product.price" [value]="item.price" name="price{{i}}"
+                (ngModelChange)="onItemChange(item)" />
+            </td>
+            <td><input class="cell-input" pInputText [(ngModel)]="item.discount" name="disc{{i}}"
+                (ngModelChange)="onItemChange(item)" /></td>
+            <td><input class="cell-input" pInputText [(ngModel)]="product.tatal" [value]="item.total" name="total{{i}}"
+                readonly /></td>
+            <td>
+              <button type="button" (click)="removeRow(i)">🗑️</button>
+            </td>
           </tr>
-          <tr>
-            <td></td>
-            <td><input id="input" pInputText [(ngModel)]="product.unity" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.tax" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.quantity" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.price" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.discount" /></td>
-            <td><input id="input" pInputText [(ngModel)]="product.tatal" /></td>
 
-          </tr>
-         
         </ng-template>
       </p-table>
-      <div class="all d-flex">
-        <div class="total">
-          {{ "totalinvoice" | translate }}:300
-        </div>
-       
-        <div class="total">
-          {{ "discounts" | translate }}:12%
-        </div>
-        <div class="total">
-          {{ "salesTax" | translate }}:5%
-        </div>
-        <div class="total">
-          {{ "Total" | translate }}:277
-        </div>
-       
-        
-      </div>
-      <div class="save col-xs-12 text-end">
-        <p-button type="Submit" class="btn-primary" label="save" [loading]="btnLoading"></p-button>
-      </div>
     </div>
+    <div class="all d-flex">
+      <div class="total">
+        {{ "totalinvoice" | translate }} : {{total | number:'1.3-3'}}
+      </div>
+
+      <div class="total">
+        {{ "discounts" | translate }} :{{discount | number:'1.3-3'}}
+      </div>
+      <div class="total">
+        {{ "salesTax" | translate }} : {{tax | number:'1.3-3'}}
+      </div>
+      <div class="total">
+        {{ "Total" | translate }} : {{netTotal | number:'1.3-3'}}
+      </div>
+
+
+    </div>
+
+    <div class="save col-xs-12 text-end">
+      <p-button type="button" class="btn-primary" label="Save" [loading]="btnLoading" (onClick)="onSubmit()"></p-button>
+    </div>
+  </div>
 </div>
