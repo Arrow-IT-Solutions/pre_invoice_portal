@@ -354,10 +354,32 @@
   "employeeLastName":"Last Name",
   "employeeEmail":"email",
   "totalemployee":"Total Employees",
-  "Search_EmployeeEmail":"employee email"
-  
-
-
+  "Search_EmployeeEmail":"employee email",
+  "lastInvoiceNo_Setting" : "Last Invoice Number",
+  "VATNo_Setting" : "VAT Number",
+  "Update_Setting" : "Update Settings",
+  "Setting_Create" : "Add Settings",
+  "Basic_Info_Settings" : "Basic Info",
+  "Location_AddSettings" : "Location",
+  "Phone_AddSettings" : "Phone",
+  "Email_AddSettings" : "Email",
+  "Latestinvoice_AddSettings" : "Last Invoice Number",
+  "VatNumber_AddSettings" : "VAT Number",
+  "ProductName_Product" : "Product Name",
+  "Productprice_Product" : "Product Price",
+  "Edit_Product" : "Edit",
+  "Delete_Product" : "Delete",
+  "Basic_Info_AddProduct" : "Basic Info",
+  "SortID_AddProduct" : "Sort ID",
+  "ProductNameAr_AddProduct" : "Product Name in Arabic",
+  "ProductNameEn_AddProduct" : "Product Name in English",
+  "Price_AddProduct" : "Price",
+  "CompanyName_Setting" : "Company Name",
+  "NameAr_AddSettings" : "Company Name in Arabic",
+  "NameEn_AddSettings" : "Company Name in English",
+  "clientName_Client" : "Name",
+  "ClientName_Client" : "Name",
+  "Phone_Client" : "Phone"
 
 
 

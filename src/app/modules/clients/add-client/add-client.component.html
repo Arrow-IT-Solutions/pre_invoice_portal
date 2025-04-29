@@ -1,55 +1,64 @@
-<form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="add-Client">
-    <div class="add-Client">
-      <div class="box-shadow mb-3">
-        <div class="row">
-          <div class="col-12 side-icon">
-            <span class="material-symbols-outlined">info</span>
-            <span>{{ 'Basic_Info_Advertise' | translate }}</span>
-          </div>
-          <div class="col-12 row m-0 p-0">
-            <div class="col-12 mb-3">
-              <div class="p-float-label">
-                <input pInputText type="text" formControlName="FirstNameAr" />
-                <label>{{ 'FirstNameAr_Client' | translate }}</label>
-              </div>
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="add-client">
+  <div class="add-client">
+    <div class="box-shadow mb-3">
+      <div class="row">
+        <div class="col-12 side-icon">
+          <span class="material-symbols-outlined">info</span>
+          <span>{{ 'Basic_Info_Client' | translate }}</span>
+        </div>
+        <div class="col-12 row m-0 p-0">
+          <div class="col-12 mb-3">
+            <div class="p-float-label">
+              <input pInputText type="text" formControlName="firstNameAr" />
+              <label>{{ 'FirstNameAr_Client' | translate }}</label>
+              <span *ngIf="submitted && form['firstNameAr'].errors" class="error-validation">{{ 'Field_Required' |
+                translate }}</span>
             </div>
-            <div class="col-12 mb-3">
-                <div class="p-float-label">
-                  <input pInputText type="text" formControlName="FirstNameEn" />
-                  <label>{{ 'FirstNameEn_Client' | translate }}</label>
-                </div>
-              </div>
-              <div class="col-12 mb-3">
-                <div class="p-float-label">
-                  <input pInputText type="text" formControlName="LastNameAr" />
-                  <label>{{ 'LastNameAr_Client' | translate }}</label>
-                </div>
-              </div>
-              <div class="col-12 mb-3">
-                <div class="p-float-label">
-                  <input pInputText type="text" formControlName="LastNameEn" />
-                  <label>{{ 'LastNameEn_Client' | translate }}</label>
-                </div>
-              </div>
-            <div class="col-12 mb-3">
-              <div class="p-float-label">
-                <input pInputText type="text" formControlName="phone" />
-                <label>{{ 'client-phone' | translate }}</label>
-              </div>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="p-float-label">
+              <input pInputText type="text" formControlName="lastNameAr" />
+              <label>{{ 'LastNameAr_Client' | translate }}</label>
+              <span *ngIf="submitted && form['lastNameAr'].errors" class="error-validation">{{ 'Field_Required' |
+                translate }}</span>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="p-float-label">
+              <input pInputText type="text" formControlName="firstNameEn" />
+              <label>{{ 'FirstNameEn_Client' | translate }}</label>
+              <span *ngIf="submitted && form['firstNameEn'].errors" class="error-validation">{{ 'Field_Required' |
+                translate }}</span>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="p-float-label">
+              <input pInputText type="text" formControlName="lastNameEn" />
+              <label>{{ 'LastNameEn_Client' | translate }}</label>
+              <span *ngIf="submitted && form['lastNameEn'].errors" class="error-validation">{{ 'Field_Required' |
+                translate }}</span>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="p-float-label">
+              <input pInputText type="text" formControlName="clientPhone" />
+              <label>{{ 'client-phone' | translate }}</label>
+              <span *ngIf="submitted && form['clientPhone'].errors" class="error-validation">{{ 'Field_Required' |
+                translate }}</span>
             </div>
           </div>
         </div>
       </div>
-  
-  
-  
-  
-      <div class="col-xs-12 text-end mt-4">
-        <p-button type="Submit" class="btn-primary" label="Save" [loading]="btnLoading"></p-button>
-      </div>
     </div>
-  </form>
-  
-  <p-toast key="toast"></p-toast>
-  
 
+
+
+
+    <div class="col-xs-12 text-end mt-4">
+      <p-button type="Submit" class="btn-primary" label="Save" [loading]="btnLoading"></p-button>
+    </div>
+  </div>
+</form>
+
+<p-toast key="toast"></p-toast>

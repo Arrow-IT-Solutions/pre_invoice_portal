@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings/settings.component';
-import { AddSettingComponent } from './add-setting/add-setting.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ResponseBase } from 'src/app/shared/class/class';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ResponseBase, RequestBase, SearchRequestBase } from 'src/app/shared/class/class';
+import { AddSettingComponent } from './add-setting/add-setting.component';
 
 
 @NgModule({
@@ -22,8 +21,55 @@ import { ResponseBase } from 'src/app/shared/class/class';
   ]
 })
 export class SettingsModule { }
-export interface SettingssResponse extends ResponseBase {
+export interface SettingResponse extends ResponseBase {
 
+  uuid?: string;
+  settingTranslation?: { [key: string]: SettingTranslationResponse };
+  phone: string,
+  email: string,
+  location: string,
+  vatNo: string,
+  lastInvoiceNo: string,
+  logo: string,
 
+}
+export interface SettingSearchRequest extends SearchRequestBase {
+  uuid?: string;
+  name?: string;
 
+}
+export interface SettingUpdateRequest extends RequestBase {
+  settingTranslation?: SettingTranslationRequest[];
+  phone: string,
+  email: string,
+  location: string,
+  vatNo: string,
+  lastInvoiceNo: string,
+  logo: string,
+
+}
+
+export interface SettingRequest extends RequestBase {
+  settingTranslation?: SettingTranslationRequest[];
+  phone: string,
+  email: string,
+  location: string,
+  vatNo: string,
+  lastInvoiceNo: string,
+  logo: string,
+}
+
+export interface SettingTranslationResponse {
+  uuid?: string;
+  name?: string;
+  language?: string;
+}
+export interface SettingTranslationRequest {
+  uuid?: string;
+  name?: string;
+  language?: string;
+}
+export interface SettingTranslationUpdateRequest {
+  uuid?: string;
+  name?: string;
 }
