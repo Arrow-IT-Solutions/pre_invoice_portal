@@ -11,6 +11,15 @@
         display: flex;
         flex-wrap: wrap;
         column-gap: 2rem;
+        #result{
+          background-color: $background-green-color;
+          border: none;
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          
+          color: white;
+        }
         .result{
             padding-left: 2rem;
             padding-top: 1rem;

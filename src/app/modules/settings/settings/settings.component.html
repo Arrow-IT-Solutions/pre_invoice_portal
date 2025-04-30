@@ -1,29 +1,42 @@
 <div class="settings" *ngFor="let row of data">
-  <span id="tittle">{{'Settings' | translate}}</span>
-  <div class="latestinvoice">
-    <span id="latest">{{ 'CompanyName_Setting' | translate }} :</span>
-    <span id="info">{{ row.settingTranslation![layoutService.config.lang]?.name }}</span>
+  <span class="material-symbols-outlined fill" id="edit">edit</span>
+
+  <div id="tittle">
+  <span>{{'Settings' | translate}}:</span>
   </div>
-  <div class="location">
-    <span class="material-symbols-outlined fill">location_on</span>
-    <span id="info">{{ row.location }}</span>
+  <div class="container">
+    <div class="settings_info">
+      <div class="latestinvoice">
+        <span id="latest">{{ 'CompanyName_Setting' | translate }} :</span>
+        <span id="info">{{ row.settingTranslation![layoutService.config.lang]?.name }}</span>
+      </div>
+      <div class="location">
+        <span class="material-symbols-outlined fill">location_on</span>
+        <span id="info">{{ row.location }}</span>
+      </div>
+      <div class="phone">
+        <span class="material-symbols-outlined fill">settings_phone</span>
+        <span id="info">{{ row.phone }}</span>
+      </div>
+      <div class="email">
+        <span class="material-symbols-outlined fill">email</span>
+        <span id="info">{{ row.email }}</span>
+      </div>
+      <hr>
+      <div class="latestinvoice">
+        <span id="latest">{{ 'lastInvoiceNo_Setting' | translate }} : </span>
+        <span id="info">{{ row.lastInvoiceNo }}</span>
+      </div>
+      <div class="latestinvoice">
+        <span id="latest">{{ 'VATNo_Setting' | translate }} : </span>
+        <span id="info">{{ row.vatNo }}</span>
+      </div>
+    </div>
+    <div class="logo-container">
+      <img src="../../.././../assets/images/Property 1=Icon.svg" alt="">
+    </div>
   </div>
-  <div class="phone">
-    <span class="material-symbols-outlined fill">settings_phone</span>
-    <span id="info">{{ row.phone }}</span>
-  </div>
-  <div class="email">
-    <span class="material-symbols-outlined fill">email</span>
-    <span id="info">{{ row.email }}</span>
-  </div>
-  <div class="latestinvoice">
-    <span id="latest">{{ 'lastInvoiceNo_Setting' | translate }} : </span>
-    <span id="info">{{ row.lastInvoiceNo }}</span>
-  </div>
-  <div class="latestinvoice">
-    <span id="latest">{{ 'VATNo_Setting' | translate }} : </span>
-    <span id="info">{{ row.vatNo }}</span>
-  </div>
+ 
 
 </div>
 <button class="add-button" (click)="openDialog()">
