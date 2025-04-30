@@ -369,5 +369,7 @@
   "Price_AddProduct" : "السعر",
   "CompanyName_Setting" : "اسم الشركة",
   "NameAr_AddSettings" : "اسم الشركة بالعربية",
-  "NameEn_AddSettings" : "اسم الشركة بالإنجليزية"
+  "NameEn_AddSettings" : "اسم الشركة بالإنجليزية",
+  "ClientName_Client":"اسم الزبون",
+  "Add_Item":"إضافة عنصر"
 }

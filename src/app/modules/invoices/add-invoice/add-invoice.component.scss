@@ -10,71 +10,10 @@
     &:lang(ar){
         padding: 1rem 0 1rem 1rem;
     }
-    .types{
-        width: 30%;
-        background-color: $white-color;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem;
-        max-height: 40rem;
-            overflow-y: auto;
-            @media(max-width:767px){
-               width: 80%;;
-            }
-        #tittle{
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        .products{
-
-        }
-
-        & .box-shadow {
-            border: 1px solid $lighter-gray;
-            border-radius: 6px;
-            padding: 1rem 3rem 1rem 3rem;
-            background-color: $white-color;
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            // box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-            span{
-                font-size: 1rem;
-                font-weight: 600;
-                font-family: myfont, myfont-ar;
-            }
-            #value{
-                color: #c0bdbd;
-            }
-
-      & .add-button {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-        border-radius: 50%;
-        color: $white-color;
-        border: none;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-
-        background-color: $primary-color;
-        span{
-            margin: auto;
-        }
-
-        &:lang(ar){
-
-        }
-      }
-        }
-    }
+  
     .biilDetailes{
         width: 100%;
+        position: relative;
         @media(max-width:767px){
             width: 80%;;
          }
@@ -82,34 +21,46 @@
             padding: 1rem;
             border: none;
         }
-        .container{
+        .container-field{
             width: 100%;
             display: flex;
             flex-wrap: wrap;
+            column-gap: 2rem;
             @media(max-width:767px){
                row-gap: 1rem;
              }
         }
         tr{
             border-bottom: 1px solid #eeeeee;
+             
         }
 
         td,th{
             border: 0.5px dotted #eeeeee;
+            #delete{
+                border: none;
+                background-color: transparent;
+                color: $primary-color;
+            }
+           
 
         }
-       .dropdown{
-        .custom-dropdown .p-dropdown {
-            border: none !important; /* Remove the border */
-            box-shadow: none !important; /* Remove any shadow if present */
-
+        th{
+            color: $blue-color;
         }
-        .custom-dropdown .p-dropdown .p-dropdown-label {
-            border: none !important; /* Remove border from the label */
-
+        #productName{
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.5rem;
+            button{
+                border: none;
+                background-color:$background-green-color;
+                width: 6rem;
+                border-radius: 6px;
+                color: white;
+            }
         }
-
-       }
+        
 
              .cell-input {
                width: 100%;
@@ -148,15 +99,43 @@ tr>td:not(:first-child) .p-inputtext {
           left: 20px;
         }
     }
+    
 
 
 
 
 }
+// .table {
+//     // position: relative;
+//     height: 10rem;
+//     background-color: red;
+    
+// }
+// .custom-dropdown .p-dropdown .p-dropdown-label  {
+//     position: fixed;
+//     z-index: 1000;
+// }
+
+// .dropdown{
+
+// .custom-dropdown .p-dropdown {
+//     border: none !important; /* Remove the border */
+//     box-shadow: none !important; /* Remove any shadow if present */
+// }
+// // .custom-dropdown .p-dropdown .p-dropdown-label {
+// //     border: none !important; /* Remove border from the label */
+
+// // }
+
+// }
 
                 .table-wrapper {
                   overflow-x: auto;
                   /* allow horizontal scroll */
+                //   .custom-dropdown .p-dropdown  {
+                //     position: absolute;
+                //     z-index: 1000;
+                // }
                 }
 
                 .wide-table table {
@@ -164,6 +143,14 @@ tr>td:not(:first-child) .p-inputtext {
                   /* ensure table is wide enough */
                   table-layout: auto;
                   /* columns size to their content */
+                //   background-color: red;
+                //  min-height: 500px;
+
+                //   position: relative;
+                //     .custom-dropdown .p-dropdown  {
+                //     position: absolute;
+                //     z-index: 1000;
+                // }
                 }
 
                 .cell-input {
