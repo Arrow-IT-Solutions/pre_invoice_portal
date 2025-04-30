@@ -1,52 +1,360 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-interface Product{
-  unity:string;
-  tax:number;
-  quantity:number;
-  price:number;
-  discount:number;
-  total:number;
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { LayoutService } from 'src/app/layout/service/layout.service';
+import { MessageService, ConfirmationService } from 'primeng/api';
+import { InvoiceResponse, InvoiceSearchRequest, InvoiceRequest, InvoiceUpdateRequest } from '../invoices.module';
+import { InvoiceService } from 'src/app/layout/service/invoice.service';
+import { ConstantService } from 'src/app/Core/services/constant.service';
+import { ConstantResponse } from 'src/app/Core/services/constant.service';
+import { ClientResponse, ClientSearchRequest } from '../../clients/clients.module';
+import { ClientsService } from 'src/app/layout/service/clients.service';
+import { UserService } from 'src/app/Core/services/user.service';
+import { ProductResponse, ProductSearchRequest } from '../../products/products.module';
+import { ProductService } from 'src/app/layout/service/products.service';
+interface Product {
+  productIDFK: string;
+  unity: string;
+  tax: number;
+  quantity: number;
+  price: number;
+  discount: number;
+  total: number;
 }
 @Component({
   selector: 'app-add-invoice',
   templateUrl: './add-invoice.component.html',
-  styleUrls: ['./add-invoice.component.scss']
+  styleUrls: ['./add-invoice.component.scss'],
+  providers: [MessageService]
 })
 export class AddInvoiceComponent {
+  dataForm!: FormGroup;
   btnLoading: boolean = false;
-  td:any[]=[0,1,2,3,4,5,6];
-  product:Product[];
+  td: any[] = [0, 1, 2, 3, 4, 5, 6];
+  product: Product[];
   pageSize: number = 12;
   first: number = 0;
   totalRecords: number = 0;
-  invoiceType: any[] = [
-      { nameAr: 'نقدي', nameEn: 'cash', value: 0 },
-      { nameAr: 'ذمم', nameEn: 'swear', value: 1 }
-    ];
-  taxType:any[]=[
-      { nameAr: 'شامل', nameEn: 'comprehensive', value: 0 },
-      { nameAr: 'معفاة', nameEn: 'exempt', value: 1 },
-      { nameAr: 'خاضع', nameEn: 'submissive', value: 2 },
-      { nameAr: 'غير خاضع', nameEn: 'Not submissive', value: 3 },
-    ];
- 
+  invoiceTypes: ConstantResponse[] = [];
+  taxTypes: ConstantResponse[] = [];
+  clients: ClientResponse[] = [];
+  total: number
+  tax: number
+  discount: number
+  netTotal: number
+  products: ProductResponse[] = []
+
+  submitted: boolean = false;
+  constructor(public formBuilder: FormBuilder,
+    public constantService: ConstantService,
+    public invoiceService: InvoiceService,
+    public clientService: ClientsService,
+    public layoutService: LayoutService,
+    public userService: UserService,
+    public messageService: MessageService,
+    public productService: ProductService
+  ) {
+    this.dataForm = this.formBuilder.group({
+      invoiceType: ['', Validators.required],
+      taxType: ['', Validators.required],
+      date: ['', Validators.required],
+      note: [''],
+      client: [''],
+      invoiceItems: this.formBuilder.array([])
+
+    })
 
 
+    this.product = [{
+      productIDFK: '',
+      unity: '',
+      tax: 0,
+      quantity: 0,
+      price: 0,
+      discount: 0,
+      total: 0
+    }];
 
-  constructor( public formBuilder:FormBuilder){
-    this.product=[
-      {
-        unity: '',
-        tax: 0,
-        quantity: 0,
-        price: 0,
-        discount: 0,
-        total: 0
-      }
-    ];
-   
   }
-  
+
+  async ngOnInit() {
+
+    const invoiceTypeResponse = await this.constantService.Search('InvoiceType') as any;
+    this.invoiceTypes = invoiceTypeResponse.data;
+    const taxTypeResponse = await this.constantService.Search('TaxType') as any;
+    this.taxTypes = taxTypeResponse.data;
+    await this.RetriveClient();
+    await this.RetriveProduct();
+    this.dataForm.get('date')!.setValue(new Date());
+  }
+
+  async RetriveClient() {
+
+
+    let filter: ClientSearchRequest = {
+
+      name: '',
+      uuid: '',
+      pageIndex: "",
+      pageSize: '100000'
+
+    }
+    const response = await this.clientService.Search(filter) as any
+
+    this.clients = response.data,
+
+      await this.ReWriteClient();
+
+  }
+
+  async RetriveProduct() {
+
+
+    let filter: ProductSearchRequest = {
+
+      name: '',
+      uuid: '',
+      pageIndex: "",
+      pageSize: '100000'
+
+    }
+    const response = await this.productService.Search(filter) as any
+
+    this.products = response.data,
+
+      await this.ReWriteProduct();
+
+  }
+
+  ReWriteClient(): any {
+
+    var clientDTO: any[] = []
+
+    this.clients.map(client => {
+      const translation = client.clientTranslation?.[this.layoutService.config.lang] as any;
+      const firstName = translation?.firstName;
+      const lastName = translation?.lastName;
+
+      var obj =
+      {
+        ...client,
+        fullName: `${firstName} ${lastName}`.trim()
+
+      }
+
+      clientDTO.push(obj)
+
+    })
+
+    this.clients = clientDTO;
+
+  }
+
+  ReWriteProduct(): any {
+
+    var productDTO: any[] = []
+
+    this.products.map(product => {
+      const translation = product.productTranslation?.[this.layoutService.config.lang] as any;
+      const name = translation?.name;
+
+      var obj =
+      {
+        ...product,
+        name: `${name}`.trim()
+
+      }
+
+      productDTO.push(obj)
+
+    })
+
+    this.products = productDTO;
+
+  }
+
+  async FillClient(event: any = null) {
+
+    let filterInput = '';
+    if (event != null) {
+      filterInput = event.filter
+    }
+
+    let filter: ClientSearchRequest = {
+
+      name: filterInput,
+      uuid: '',
+      pageIndex: "",
+      pageSize: '100000'
+    }
+    const response = await this.clientService.Search(filter) as any
+
+    this.clients = response.data
+    await this.ReWriteClient();
+  }
+
+  async FillProduct(event: any = null) {
+
+    let filterInput = '';
+    if (event != null) {
+      filterInput = event.filter
+    }
+
+    let filter: ProductSearchRequest = {
+
+      name: filterInput,
+      uuid: '',
+      pageIndex: "",
+      pageSize: '100000'
+    }
+    const response = await this.productService.Search(filter) as any
+
+    this.clients = response.data;
+    await this.ReWriteProduct();
+  }
+
+
+  async onSubmit() {
+    try {
+      this.btnLoading = true;
+      if (this.dataForm.invalid) {
+        this.submitted = true;
+        return;
+      }
+
+
+      await this.Save();
+    } catch (exceptionVar) {
+    } finally {
+      this.btnLoading = false;
+    }
+  }
+
+  async Save() {
+    let response;
+    let date = new Date(this.dataForm.controls['date'].value)
+
+    if (this.invoiceService.SelectedData != null) {
+      // update
+
+      // var invoice: invoiceUpdateRequest = {
+      //   uuid: this.invoiceService.SelectedData?.uuid?.toString(),
+      //   sortID: this.dataForm.controls['sortID'].value.toString() == '' ? '0' : this.dataForm.controls['sortID'].value.toString(),
+      //   invoiceTranslation: invoiceTranslation,
+      //   price: this.dataForm.controls['invoicePrice'].value.toString(),
+
+      // };
+
+      // response = await this.invoiceService.Update(invoice);
+    } else {
+      // add
+      console.log('HERE 3')
+      var addinvoice: InvoiceRequest = {
+        invoiceType: this.dataForm.controls['invoiceType'].value.toString(),
+        taxType: this.dataForm.controls['taxType'].value.toString(),
+        date: date.toISOString(),
+        clientIDFK: this.dataForm.controls['client'].value == '' ? '-1' : this.dataForm.controls['client'].value.toString(),
+        note: this.dataForm.controls['note'].value.toString(),
+        invoiceItems: [],
+        employeeIDFK: this.userService.currentUser.loggedInUser.toString(),
+        total: this.total.toString(),
+        tax: this.tax.toString(),
+        discount: this.discount.toString()
+
+      };
+
+      addinvoice.invoiceItems = this.product.map(item => {
+        const discPct = 0;
+        return {
+          productIDFK: item.productIDFK,
+          taxPercentage: item.tax.toString(),
+          unit: item.unity,
+          qTY: item.quantity.toString(),
+          salePrice: item.price.toString(),
+          discountPercentage: discPct.toFixed(2),
+          discountAmount: item.discount.toString(),
+          netPrice: item.total.toString(),
+          invoiceIDFK: ''
+        };
+      });
+
+      console.log('Payload:', addinvoice);
+
+      response = await this.invoiceService.Add(addinvoice);
+    }
+
+    if (response?.requestStatus?.toString() == '200') {
+      this.layoutService.showSuccess(this.messageService, 'toast', true, response?.requestMessage);
+      if (this.invoiceService.SelectedData == null) {
+      } else {
+        this.resetForm();
+      }
+    } else {
+      this.layoutService.showError(this.messageService, 'toast', true, response?.requestMessage);
+    }
+
+    this.btnLoading = false;
+    this.submitted = false;
+  }
+
+  resetForm() {
+    this.dataForm.reset();
+  }
+
+  addRow() {
+    this.product.push({
+      productIDFK: '',
+      unity: '',
+      tax: 0,
+      quantity: 0,
+      price: 0,
+      discount: 0,
+      total: 0
+    });
+  }
+
+  removeRow(index: number) {
+    this.product.splice(index, 1);
+  }
+
+  onItemChange(item: Product) {
+    item.total = (item.quantity
+      * item.price)
+      * (1 + item.tax / 100) - (item.discount);
+    this.calculateTotals();
+  }
+
+  calculateTotals() {
+
+    this.discount = this.product.reduce(
+      (sum, item) => sum + Number(item.discount || 0),
+      0
+    );
+
+    this.total = this.product.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0,
+    );
+
+    this.tax = this.product.reduce(
+      (sum, item) => sum + item.price * item.quantity * (item.tax / 100),
+      0
+    );
+
+    this.netTotal = this.total - this.discount + this.tax;
+
+
+  }
+
+  onProductSelect(productUuid: string, rowIndex: number) {
+    const sel = this.products.find(p => p.uuid === productUuid);
+    if (!sel) return;
+
+    this.product[rowIndex].productIDFK = productUuid;
+    this.product[rowIndex].price = Number(sel.price);
+    this.product[rowIndex].total = Number(sel.price);
+    this.onItemChange(this.product[rowIndex]);
+  }
+
 
 }

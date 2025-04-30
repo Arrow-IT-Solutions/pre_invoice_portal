@@ -1,210 +1,204 @@
 <div class="invoices">
-    <div [formGroup]="dataForm" class="row mb-4 m-0  p-0">
-      <div class="container d-flex">
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-          <div class="p-float-label dropdown">
-            <p-dropdown  [options]="invoiceType"  optionLabel="value" optionValue="key" formControlName="invoiceType"
-             ></p-dropdown>
-            <label>{{ 'invoiceType' | translate }}</label>
-          </div>
+  <div [formGroup]="dataForm" class="row mb-4 m-0  p-0">
+    <div class="container d-flex">
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+        <div class="p-float-label dropdown">
+          <p-dropdown [options]="invoiceTypes" optionLabel="value" optionValue="key" (ngModelChange)="OnChange()"
+            formControlName="invoiceType"></p-dropdown>
+          <label>{{ 'invoiceType' | translate }}</label>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-            <div class="p-float-label">
-              <p-calendar [showIcon]="true" formControlName="invoiceDate" ></p-calendar>
-              <label>{{ 'Search_invoiceStartDate' | translate }}</label>
-            </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+        <div class="p-float-label">
+          <p-calendar [showIcon]="true" formControlName="fromDate" (ngModelChange)="OnChange()"></p-calendar>
+          <label>{{ 'Search_invoiceStartDate' | translate }}</label>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-          <div class="p-float-label">
-            <p-calendar [showIcon]="true" formControlName="invoiceDate" ></p-calendar>
-            <label>{{ 'Search_invoiceEndDate' | translate }}</label>
-          </div>
       </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-            <div class="flex flex-wrap justify-content-center gap-3">
-                <span class="p-input-icon-left p-0">
-                  <i class="pi pi-search"></i>
-                  <input class="search-field" type="text"  placeholder="{{ 'clientAccount'| translate }}"
-                    formControlName="clientAccount" pInputText />
-                </span>
-            </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+        <div class="p-float-label">
+          <p-calendar [showIcon]="true" formControlName="toDate" (ngModelChange)="OnChange()"></p-calendar>
+          <label>{{ 'Search_invoiceEndDate' | translate }}</label>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-          <div class="flex flex-wrap justify-content-center gap-3">
-              <span class="p-input-icon-left p-0">
-                <i class="pi pi-search"></i>
-                <input class="search-field" type="text"  placeholder="{{ 'invoiceNum'| translate }}"
-                  formControlName="invoiceNum" pInputText />
-              </span>
-          </div>
       </div>
-       
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-            <div class="p-float-label dropdown">
-              <p-dropdown [options]="taxType" optionLabel="value" optionValue="key" formControlName="taxType"
-               ></p-dropdown>
-              <label>{{ 'taxType' | translate }}</label>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
-            <div class="p-float-label dropdown">
-              <p-dropdown [options]="invoiceStatus" optionLabel="value" optionValue="key" formControlName="invoiceStatus"
-               ></p-dropdown>
-              <label>{{ 'invoiceStatus' | translate }}</label>
-            </div>
-          </div>
-          <div class="col result">
-            <p-button class="btn-outline-secondary" >
-              <span class="material-symbols-outlined">restart_alt</span>
-            </p-button>
-          </div>
-        
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+        <div class="flex flex-wrap justify-content-center gap-3">
+          <span class="p-input-icon-left p-0">
+            <i class="pi pi-search"></i>
+            <input class="search-field" type="text" placeholder="{{ 'clientAccount'| translate }}"
+              (ngModelChange)="OnChange()" formControlName="clientAccount" pInputText />
+          </span>
+        </div>
       </div>
-     
-  
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+        <div class="flex flex-wrap justify-content-center gap-3">
+          <span class="p-input-icon-left p-0">
+            <i class="pi pi-search"></i>
+            <input class="search-field" type="text" placeholder="{{ 'invoiceNum'| translate }}"
+              (ngModelChange)="OnChange()" formControlName="invoiceNum" pInputText />
+          </span>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+        <div class="p-float-label dropdown">
+          <p-dropdown [options]="taxTypes" optionLabel="value" optionValue="key" formControlName="taxType"
+            (ngModelChange)="OnChange()"></p-dropdown>
+          <label>{{ 'taxType' | translate }}</label>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
+        <div class="p-float-label dropdown">
+          <p-dropdown [options]="invoiceStatus" optionLabel="value" optionValue="key" (ngModelChange)="OnChange()"
+            formControlName="invoiceStatus"></p-dropdown>
+          <label>{{ 'invoiceStatus' | translate }}</label>
+        </div>
+      </div>
+      <div class="col result">
+        <p-button class="btn-outline-secondary" (onClick)="resetform()">
+          <span class="material-symbols-outlined">restart_alt</span>
+        </p-button>
+      </div>
+
     </div>
-  
-  
-    <ng-container *ngIf="!loading; else ListView">
-      <div class="row mx-0 mt-2 box">
-        <div>
-          <div class="card col-12 mx-0 mb-2">
-            <div class="icon-container">
-              <span class="material-symbols-outlined fill">receipt</span>
-            </div>
-            <div class="section1">
 
-            </div>
-           
-            <div class="col-lg-9 col-md-12 col-sm-12 card__contents">
-            
-              <div class="card-section1">
-                <div class="card-section__title">info</div>
-                
-                <div class="card-section__items">
-                 
-                  <div class="card__contents__item">
-                    <div class="card-label">{{ 'invoiceDate' | translate }}</div>
-                    <div class="card-info">
-                      <span class="material-symbols-outlined fill"></span>
-                      23-4-2025
-                     
-                    </div>
-                  </div>
-                  <div class="card__contents__item">
-                    <div class="card-label">{{ 'invoiceNum' | translate }}</div>
-                    <div class="card-info">
-                      <span class="material-symbols-outlined fill"></span>
-                      13
-                      
-                    </div>
-                  </div>
-                  <div class="card__contents__item">
-                    <div class="card-label">{{ 'invoiceType' | translate }}</div>
-                    <div class="card-info">
-                      <span class="material-symbols-outlined fill"></span>
-                     نقدي
-                      
-                    </div>
-                  </div>
-                  <div class="card__contents__item">
-                    <div class="card-label">{{ 'taxType' | translate }}</div>
-                    <div class="card-info">
-                      <span class="material-symbols-outlined fill"></span>
-                      شامل
-                    </div>
-                  </div>
-                  <div class="card__contents__item">
-                    <div class="card-label">{{ 'invoiceStatus' | translate }}</div>
-                    <div class="card-info">
-                      <span class="material-symbols-outlined fill"></span>
-                      مرحل للفوترة
-                    </div>
-                  </div>
-                 
-                </div>
-              </div>
-              <div class="card-section2">
-                <div class="card-section__title">info</div>
-                
-                <div class="card-section__items">
-                  <div class="card__contents__item">
-                    <div class="card-label">{{ 'discounts' | translate }}</div>
-                    <div class="card-info">
-                      <span class="material-symbols-outlined fill"></span>
-                      20%
-                    </div>
-                  </div>
-                  <div class="card__contents__item">
-                    <div class="card-label">{{ 'salesTax' | translate }}</div>
-                    <div class="card-info">
-                      <span class="material-symbols-outlined fill"></span>
-                      4%
-                    </div>
-                  </div>
-                  <div class="card__contents__item">
-                    <div class="card-label">{{ 'Total' | translate }}</div>
-                    <div class="card-info">
-                      <span class="material-symbols-outlined fill"></span>
-                      360
-                    </div>
-                  </div>
 
+  </div>
+
+
+  <ng-container *ngIf="!loading; else ListView">
+    <div class="row mx-0 mt-2 box">
+      <div *ngFor="let row of data">
+        <div class="card col-12 mx-0 mb-2">
+          <div class="icon-container">
+            <span class="material-symbols-outlined fill">receipt</span>
+          </div>
+          <div class="section1">
+
+          </div>
+
+          <div class="col-lg-9 col-md-12 col-sm-12 card__contents">
+
+            <div class="card-section1">
+              <div class="card-section__title">info</div>
+
+              <div class="card-section__items">
+
+                <div class="card__contents__item">
+                  <div class="card-label">{{ 'invoiceDate' | translate }}</div>
+                  <div class="card-info">
+                    <span class="material-symbols-outlined fill"></span>
+                    {{row.date | date : 'dd-MM-yyyy'}}
+
+                  </div>
                 </div>
+                <div class="card__contents__item">
+                  <div class="card-label">{{ 'invoiceNum' | translate }}</div>
+                  <div class="card-info">
+                    <span class="material-symbols-outlined fill"></span>
+                    {{row.invoiceNo}}
+
+                  </div>
+                </div>
+                <div class="card__contents__item">
+                  <div class="card-label">{{ 'invoiceType' | translate }}</div>
+                  <div class="card-info">
+                    <span class="material-symbols-outlined fill"></span>
+                    {{row.invoiceTypeValue}}
+
+                  </div>
+                </div>
+                <div class="card__contents__item">
+                  <div class="card-label">{{ 'taxType' | translate }}</div>
+                  <div class="card-info">
+                    <span class="material-symbols-outlined fill"></span>
+                    {{row.taxTypeValue}}
+                  </div>
+                </div>
+                <div class="card__contents__item">
+                  <div class="card-label">{{ 'invoiceStatus' | translate }}</div>
+                  <div class="card-info">
+                    <span class="material-symbols-outlined fill"></span>
+                    {{row.transferValue}}
+                  </div>
+                </div>
+
               </div>
             </div>
-           
-  
-              
-  
-  
-          
-            <div class="one">
-              <div [matMenuTriggerFor]="menu" class="card__actions">
-                <span class="material-symbols-outlined card__actions__details">more_vert</span>
+            <div class="card-section2">
+              <div class="card-section__title">info</div>
+
+              <div class="card-section__items">
+                <div class="card__contents__item">
+                  <div class="card-label">{{ 'discounts' | translate }}</div>
+                  <div class="card-info">
+                    <span class="material-symbols-outlined fill"></span>
+                    {{row.discount}}
+                  </div>
+                </div>
+                <div class="card__contents__item">
+                  <div class="card-label">{{ 'salesTax' | translate }}</div>
+                  <div class="card-info">
+                    <span class="material-symbols-outlined fill"></span>
+                    {{row.tax}}
+                  </div>
+                </div>
+                <div class="card__contents__item">
+                  <div class="card-label">{{ 'Total' | translate }}</div>
+                  <div class="card-info">
+                    <span class="material-symbols-outlined fill"></span>
+                    {{row.total}}
+                  </div>
+                </div>
+
               </div>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item >
-                  <span class="material-symbols-outlined">Edit</span>
-                  {{ 'Edit_Driver' | translate }}
-                </button>
-                <button mat-menu-item >
-                  <span class="material-symbols-outlined">delete</span>
-                  {{ 'Delete_Driver' | translate }}
-                </button>
-                <button mat-menu-item >
-                    <span class="material-symbols-outlined">payment</span>
-                    {{ 'Billing' | translate }}
-                  </button>
-              </mat-menu>
-  
             </div>
           </div>
-          
+
+          <div class="one">
+            <div [matMenuTriggerFor]="menu" class="card__actions">
+              <span class="material-symbols-outlined card__actions__details">more_vert</span>
+            </div>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <span class="material-symbols-outlined">Edit</span>
+                {{ 'Edit_Invoice' | translate }}
+              </button>
+              <button mat-menu-item>
+                <span class="material-symbols-outlined">delete</span>
+                {{ 'Delete_Invoice' | translate }}
+              </button>
+              <button mat-menu-item>
+                <span class="material-symbols-outlined">payment</span>
+                {{ 'Transfer_Invoice' | translate }}
+              </button>
+            </mat-menu>
+
+          </div>
         </div>
+
       </div>
-  
-      <div class="all d-flex">
-        <div class="total">
-          {{ "totalinvoices" | translate }}:12
-        </div>
-        
+    </div>
+
+    <div class="all d-flex">
+      <div class="total">
+        {{ "totalinvoices" | translate }}:{{ totalRecords }}
       </div>
-      <p-paginator class="mt-2" [rows]="pageSize" [totalRecords]="totalRecords" [rowsPerPageOptions]="[4, 12, 20, 30]"
-          [first]="first"></p-paginator>
-      <button class="add-button" (click)="openAddInvoice()">
-        <span class="material-symbols-outlined">add</span>
-      </button>
-  
-    </ng-container>
-  
-    <ng-template #ListView>
-      <div class="row">
-        <div *ngFor="let list of [1, 2, 3, 4]" class="row mx-0 mt-2">
-          <p-skeleton height="7.5rem"></p-skeleton>
-        </div>
+
+    </div>
+    <p-paginator class="mt-2" [rows]="pageSize" [totalRecords]="totalRecords" [rowsPerPageOptions]="[4, 12, 20, 30]"
+      [first]="first" (onPageChange)="paginate($event)"></p-paginator>
+    <button class="add-button" (click)="openAddInvoice()">
+      <span class="material-symbols-outlined">add</span>
+    </button>
+
+  </ng-container>
+
+  <ng-template #ListView>
+    <div class="row">
+      <div *ngFor="let list of [1, 2, 3, 4]" class="row mx-0 mt-2">
+        <p-skeleton height="7.5rem"></p-skeleton>
       </div>
-    </ng-template>
-  
-  </div>
-  
+    </div>
+  </ng-template>
+
+</div>
