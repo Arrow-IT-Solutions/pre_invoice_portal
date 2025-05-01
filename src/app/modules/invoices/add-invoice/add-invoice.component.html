@@ -59,13 +59,13 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product let-columns="columns" let-item let-i="rowIndex">
-          <tr>
+          <tr id="trContainer">
             <td>
-              <div class="p-float-label dropdown">
+              <div class="p-float-label dropdown" >
                 <p-dropdown class="custom-dropdown" [options]="products" optionLabel="name" optionValue="uuid"
-                  [filter]="true" [showClear] ="true"filterBy="name" [(ngModel)]="item.productIDFK"
+                  [filter]="true" [showClear] ="true" filterBy="name" [(ngModel)]="item.productIDFK"
                   placeholder="— {{ 'selectProduct' | translate }} —" (onFilter)="FillProduct($event)"
-                  (onChange)="onProductSelect($event.value, i)"></p-dropdown>
+                  (onChange)="onProductSelect($event.value, i)" appendTo="body"></p-dropdown>
                 <label>{{'productName' | translate}}</label>
               </div>
             </td>

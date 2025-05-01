@@ -20,6 +20,7 @@ interface Product {
   price: number;
   discount: number;
   total: number;
+
 }
 @Component({
   selector: 'app-add-invoice',
@@ -45,6 +46,9 @@ export class AddInvoiceComponent {
   products: ProductResponse[] = []
 
   submitted: boolean = false;
+
+
+
   constructor(public formBuilder: FormBuilder,
     public constantService: ConstantService,
     public invoiceService: InvoiceService,
@@ -74,6 +78,7 @@ export class AddInvoiceComponent {
       discount: 0,
       total: 0
     }];
+   
 
   }
 
@@ -355,6 +360,10 @@ export class AddInvoiceComponent {
     this.product[rowIndex].total = Number(sel.price);
     this.onItemChange(this.product[rowIndex]);
   }
+
+
+
+ 
 
 
 }
