@@ -43,8 +43,8 @@ export class AddInvoiceComponent {
   discount: number
   netTotal: number
   products: ProductResponse[] = []
-
   submitted: boolean = false;
+
   constructor(public formBuilder: FormBuilder,
     public constantService: ConstantService,
     public invoiceService: InvoiceService,
@@ -219,6 +219,7 @@ export class AddInvoiceComponent {
       this.btnLoading = true;
       if (this.dataForm.invalid) {
         this.submitted = true;
+        console.log('HERE 3')
         return;
       }
 
@@ -248,7 +249,7 @@ export class AddInvoiceComponent {
       // response = await this.invoiceService.Update(invoice);
     } else {
       // add
-      console.log('HERE 3')
+
       var addinvoice: InvoiceRequest = {
         invoiceType: this.dataForm.controls['invoiceType'].value.toString(),
         taxType: this.dataForm.controls['taxType'].value.toString(),
