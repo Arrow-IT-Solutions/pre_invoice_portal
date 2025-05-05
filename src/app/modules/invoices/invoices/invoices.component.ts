@@ -171,5 +171,9 @@ export class InvoicesComponent {
       },
     });
   }
+  Print(row: InvoiceResponse | null = null) {
+    console.log(row)
+    this.route.navigate(['printInvoice'], { queryParams: { id: row?.uuid } });
+  }
 
 }
