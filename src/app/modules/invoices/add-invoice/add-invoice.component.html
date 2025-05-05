@@ -2,7 +2,7 @@
   <div class="biilDetailes">
     <div class="row mb-4 m-0  p-0">
       <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
-        <div class="container">
+        <div class="container-field">
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
             <div class="p-float-label dropdown">
               <p-dropdown [options]="invoiceTypes" optionLabel="value" optionValue="key"
@@ -56,12 +56,12 @@
       </form>
     </div>
 
-    <button type="button" (click)="addRow()">+ Add Item</button>
+    
     <div class="table-wrapper">
-      <p-table [value]="product" editable="true" styleClass="wide-table" [scrollable]="true" scrollWidth="100%">
+      <p-table class="table" [value]="product" editable="true" styleClass="wide-table" [scrollable]="true" scrollWidth="100%">
         <ng-template pTemplate="header">
           <tr>
-            <th id="">{{'productName' | translate}}</th>
+            <th id="productName">{{'productName' | translate}}<button type="button" (click)="addRow()">+ {{'Add_Item' | translate}}</button></th>
             <th>{{'productUnit' | translate}}</th>
             <th>{{'TaxRate' | translate}}</th>
             <th>{{'productQuantity' | translate}}</th>
@@ -72,13 +72,13 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product let-columns="columns" let-item let-i="rowIndex">
-          <tr>
+          <tr id="trContainer">
             <td>
-              <div class="p-float-label dropdown">
+              <div class="p-float-label dropdown" >
                 <p-dropdown class="custom-dropdown" [options]="products" optionLabel="name" optionValue="uuid"
-                  [filter]="true" [showClear]="true" filterBy="name" [(ngModel)]="item.productIDFK"
+                  [filter]="true" [showClear] ="true" filterBy="name" [(ngModel)]="item.productIDFK"
                   placeholder="— {{ 'selectProduct' | translate }} —" (onFilter)="FillProduct($event)"
-                  (onChange)="onProductSelect($event.value, i)"></p-dropdown>
+                  (onChange)="onProductSelect($event.value, i)" appendTo="body"></p-dropdown>
                 <label>{{'productName' | translate}}</label>
               </div>
             </td>
@@ -96,7 +96,10 @@
             <td><input class="cell-input" pInputText [(ngModel)]="product.tatal" [value]="item.total" name="total{{i}}"
                 readonly /></td>
             <td>
-              <button type="button" (click)="removeRow(i)">🗑️</button>
+              <button type="button" id="delete" (click)="removeRow(i)">
+               <span class="material-symbols-outlined fill">delete</span>
+
+              </button>
             </td>
           </tr>
 

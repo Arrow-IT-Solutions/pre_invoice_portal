@@ -378,8 +378,9 @@
   "NameAr_AddSettings" : "Company Name in Arabic",
   "NameEn_AddSettings" : "Company Name in English",
   "clientName_Client" : "Name",
-  "ClientName_Client" : "Name",
-  "Phone_Client" : "Phone"
+  "Phone_Client" : "Phone",
+  "Add_Item":"Add Item"
+  
 
 
 

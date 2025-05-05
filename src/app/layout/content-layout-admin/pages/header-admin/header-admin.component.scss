@@ -15,6 +15,7 @@
         color: $primary-color;
         display: flex;
         align-content: center;
+        align-items: center;
         flex-wrap: wrap;
         font-size: $h5-size;
         padding-inline-start: 1rem;
@@ -52,7 +53,7 @@
     }
 
     &__tools{
-            color: $primary-color-hover;
+            color: $background-green-color;
             width: 100%;
             display: flex;
             justify-content: flex-end;
