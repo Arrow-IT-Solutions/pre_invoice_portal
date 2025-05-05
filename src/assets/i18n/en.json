@@ -379,7 +379,18 @@
   "NameEn_AddSettings" : "Company Name in English",
   "clientName_Client" : "Name",
   "Phone_Client" : "Phone",
-  "Add_Item":"Add Item"
+  "Add_Item":"Add Item",
+  "Edit_Invoice":"Edit",
+  "Delete_Invoice":"Delete",
+  "Transfer_Invoice":"Payment",
+  "Print_Invoice":"Print",
+  "clientAddress":"Address",
+  "StatementName":"Statement Name",
+  "UnitPrice":"Unit Price",
+  "TotalTax":"Total Tax",
+  "TotalPrintinvoice":"Total",
+  "Commercial_number":"Commercial number",
+  "company_location":"Location"
   
 
 

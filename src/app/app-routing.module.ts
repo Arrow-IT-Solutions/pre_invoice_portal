@@ -74,6 +74,18 @@ const routes: Routes = [
 
     ],
   },
+  {
+    path:'printInvoice',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./modules/invoice-for-print/invoice-for-print.module').then(
+            (m) => m.InvoiceForPrintModule
+          )
+      }
+    ]
+  },
 
   {
     path: 'auth',

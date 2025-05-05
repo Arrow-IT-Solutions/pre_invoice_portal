@@ -141,7 +141,7 @@
   "Date_Ownership" : "التاريخ",
   "ClientName":"الاسم",
   "contryCode":" رمز الدولة",
-  "client-phone":"رقم الهاتف",
+  " ":"رقم الهاتف",
   "client-gender":"الجنس",
   "Birthdate_client":"تاريخ الميلاد",
   "Search_ClientName":"اسم الزبون",
@@ -371,5 +371,17 @@
   "NameAr_AddSettings" : "اسم الشركة بالعربية",
   "NameEn_AddSettings" : "اسم الشركة بالإنجليزية",
   "ClientName_Client":"اسم الزبون",
-  "Add_Item":"إضافة عنصر"
+  "Add_Item":"إضافة عنصر",
+  "Edit_Invoice":"تعديل الفاتورة",
+  "Delete_Invoice":"حذف الفاتورة",
+  "Transfer_Invoice":"ترحيل إلى الفوترة",
+  "Print_Invoice":"طباعة",
+  "clientAddress":"العنوان",
+  "StatementName":"اسم البيان",
+  "UnitPrice":"سعر الوحدة",
+  "TotalTax":"إجمالي الضريبة",
+  "TotalPrintinvoice":"الإجمالي",
+  "Commercial_number":"رقم السجل التجاري",
+  "company_location":"العنوان",
+  "client-phone":"رقم هاتف الزبون"
 }

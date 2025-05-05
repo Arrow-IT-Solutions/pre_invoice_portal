@@ -173,6 +173,10 @@
                 <span class="material-symbols-outlined">payment</span>
                 {{ 'Transfer_Invoice' | translate }}
               </button>
+              <button mat-menu-item (click)="Print(row)">
+                <span class="material-symbols-outlined">print</span>
+                {{ 'Print_Invoice' | translate }}
+              </button>
             </mat-menu>
 
           </div>
