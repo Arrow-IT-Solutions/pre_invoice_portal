@@ -1,8 +1,8 @@
 <div class="settings" *ngFor="let row of data">
-  <span class="material-symbols-outlined fill" id="edit">edit</span>
+  <span class="material-symbols-outlined fill" id="edit" (click)="openDialog(row)">edit</span>
 
   <div id="tittle">
-  <span>{{'Settings' | translate}}:</span>
+    <span>{{'Settings' | translate}}:</span>
   </div>
   <div class="container">
     <div class="settings_info">
@@ -33,10 +33,10 @@
       </div>
     </div>
     <div class="logo-container">
-      <img src="../../.././../assets/images/Property 1=Icon.svg" alt="">
+      <img [src]="row.logo" (click)="showDialog(row.logo)" alt="">
     </div>
   </div>
- 
+
 
 </div>
 <button class="add-button" (click)="openDialog()">

@@ -23,6 +23,7 @@ export class SettingsComponent {
   loading = false;
   visible: boolean = false;
   data: SettingResponse[] = [];
+  link = '';
   constructor(public route: Router,
     public settingService: SettingsService,
     public layoutService: LayoutService,
@@ -122,5 +123,10 @@ export class SettingsComponent {
         // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
       },
     });
+  }
+
+  showDialog(link: string) {
+    this.link = link;
+    this.visible = true;
   }
 }

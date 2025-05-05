@@ -99,11 +99,11 @@ export class InvoicesComponent {
       uuid: '',
       fromDate: fromDate.toLocaleString(),
       toDate: toDate.toLocaleString(),
-      invoiceType: this.dataForm.controls['invoiceType'].value == -1 ? '' : this.dataForm.controls['invoiceType'].value.toString(),
+      invoiceType: this.dataForm.controls['invoiceType'].value == null ? '' : this.dataForm.controls['invoiceType'].value.toString(),
       clientName: this.dataForm.controls['clientAccount'].value,
-      taxType: this.dataForm.controls['taxType'].value == -1 ? '' : this.dataForm.controls['taxType'].value.toString(),
-      isTransferred: this.dataForm.controls['invoiceStatus'].value == -1 ? '' : this.dataForm.controls['invoiceStatus'].value.toString(),
-      invoiceNo: this.dataForm.controls['invoiceNum'].value.toString(),
+      taxType: this.dataForm.controls['taxType'].value == null ? '' : this.dataForm.controls['taxType'].value.toString(),
+      isTransferred: this.dataForm.controls['invoiceStatus'].value == null ? '' : this.dataForm.controls['invoiceStatus'].value.toString(),
+      invoiceNo: this.dataForm.controls['invoiceNum'].value == null ? '' : this.dataForm.controls['invoiceNum'].value.toString(),
       includeClient: '0',
       includeEmployee: '1',
       includeItems: '1',
@@ -111,8 +111,6 @@ export class InvoicesComponent {
       pageIndex: pageIndex.toString(),
       pageSize: this.pageSize.toString()
     };
-
-    console.log(filter)
 
     const response = (await this.invoiceService.Search(filter)) as any;
 
@@ -130,6 +128,7 @@ export class InvoicesComponent {
   }
 
   async resetform() {
+
     this.isResetting = true;
     this.dataForm.reset();
     await this.FillData();
@@ -143,7 +142,8 @@ export class InvoicesComponent {
 
   }
 
-  openAddInvoice() {
+  openAddInvoice(row: InvoiceResponse | null = null) {
+    this.invoiceService.SelectedData = row
     this.route.navigate(['layout-admin/invoices/add-invoice'])
   }
 

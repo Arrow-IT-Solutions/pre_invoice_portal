@@ -314,7 +314,6 @@
   "clientAccount":"حساب العميل",
   "notes":"ملاحظات",
   "taxType":"نوع الضريبة",
-  "invoiceDate":"تاريخ الفاتورة",
   "invoiceNum":"رقم الفاتورة",
   "invoiceStatus":"حالة الفاتورة",
   "Billing":"ترحيل إلى الفوترة",
@@ -371,5 +370,7 @@
   "NameAr_AddSettings" : "اسم الشركة بالعربية",
   "NameEn_AddSettings" : "اسم الشركة بالإنجليزية",
   "ClientName_Client":"اسم الزبون",
-  "Add_Item":"إضافة عنصر"
+  "Add_Item":"إضافة عنصر",
+  "Delete" : "حذف",
+  "ProductName" : "البيان"
 }

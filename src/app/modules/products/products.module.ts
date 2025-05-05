@@ -23,7 +23,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 export class ProductsModule { }
 export interface ProductResponse extends ResponseBase {
 
-  uuid?: string;
+  uuid: string;
   sortID: string,
   productTranslation?: { [key: string]: ProductTranslationResponse };
   price: string,

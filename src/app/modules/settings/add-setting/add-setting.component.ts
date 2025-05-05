@@ -16,6 +16,9 @@ export class AddSettingComponent {
   submitted: boolean = false;
   btnLoading: boolean = false;
   loading: boolean = false;
+  file: any;
+  fileInput: any
+  img: boolean = true;
   constructor(public formBuilder: FormBuilder,
     public layoutService: LayoutService,
     public settingService: SettingsService,
@@ -136,6 +139,8 @@ export class AddSettingComponent {
       nameAr: this.settingService.SelectedData?.settingTranslation!['ar'].name,
       nameEn: this.settingService.SelectedData?.settingTranslation!['en'].name,
     };
+    this.fileInput = this.settingService.SelectedData?.logo,
+      this.img = false
     this.dataForm.patchValue(temp);
 
   }
@@ -143,5 +148,10 @@ export class AddSettingComponent {
 
   resetForm() {
     this.dataForm.reset();
+  }
+
+  OnSelectFile(file) {
+    this.file = file;
+    this.img = false;
   }
 }
