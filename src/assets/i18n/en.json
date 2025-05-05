@@ -336,7 +336,6 @@
   "productprice":"Price",
   "productDiscount":"Discount amount",
   "Types":"Products",
-  "invoiceDate":"invoice Date",
   "totalinvoice":"Total",
   "totalproducts":"Total products",
   "Create_Product":"Create new Product",
@@ -391,7 +390,8 @@
   "TotalPrintinvoice":"Total",
   "Commercial_number":"Commercial number",
   "company_location":"Location"
-  
+  "Delete" : "Delete",
+  "ProductName" : "Description"
 
 
 

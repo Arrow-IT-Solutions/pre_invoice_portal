@@ -314,7 +314,6 @@
   "clientAccount":"حساب العميل",
   "notes":"ملاحظات",
   "taxType":"نوع الضريبة",
-  "invoiceDate":"تاريخ الفاتورة",
   "invoiceNum":"رقم الفاتورة",
   "invoiceStatus":"حالة الفاتورة",
   "Billing":"ترحيل إلى الفوترة",
@@ -384,4 +383,6 @@
   "Commercial_number":"رقم السجل التجاري",
   "company_location":"العنوان",
   "client-phone":"رقم هاتف الزبون"
+  "Delete" : "حذف",
+  "ProductName" : "البيان"
 }

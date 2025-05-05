@@ -41,13 +41,6 @@
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mt-3">
                 <div class="p-float-label">
-                  <input type="text" pInputText formControlName="role" (ngModelChange)="OnChange()" class="search-field"
-                    type="text" />
-                  <label>{{ 'Search_EmployeeRole' | translate}}</label>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mt-3">
-                <div class="p-float-label">
                   <input type="text" pInputText formControlName="userName" (ngModelChange)="OnChange()"
                     class="search-field" type="text" />
                   <label>{{ 'Search_EmployeeUserName' | translate}}</label>
@@ -55,11 +48,11 @@
               </div>
             </div>
 
-            <div class="col result" >
+            <div class="col result">
               <button id="result" (onClick)="resetform()">
                 <span class="material-symbols-outlined">restart_alt</span>
               </button>
-             
+
             </div>
           </div>
         </ng-template>

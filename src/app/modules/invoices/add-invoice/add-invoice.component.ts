@@ -20,6 +20,7 @@ interface Product {
   price: number;
   discount: number;
   total: number;
+  uuid?: string;
 
 }
 @Component({
@@ -44,7 +45,6 @@ export class AddInvoiceComponent {
   discount: number
   netTotal: number
   products: ProductResponse[] = []
-
   submitted: boolean = false;
 
 
@@ -67,8 +67,6 @@ export class AddInvoiceComponent {
       invoiceItems: this.formBuilder.array([])
 
     })
-
-
     this.product = [{
       productIDFK: '',
       unity: '',
@@ -78,19 +76,56 @@ export class AddInvoiceComponent {
       discount: 0,
       total: 0
     }];
-   
+
 
   }
 
   async ngOnInit() {
-
+    this.dataForm.get('date')!.setValue(new Date());
+    if (this.invoiceService.SelectedData != null) {
+      console.log(this.invoiceService.SelectedData)
+      this.populateFormForEdit();
+    }
     const invoiceTypeResponse = await this.constantService.Search('InvoiceType') as any;
     this.invoiceTypes = invoiceTypeResponse.data;
     const taxTypeResponse = await this.constantService.Search('TaxType') as any;
     this.taxTypes = taxTypeResponse.data;
     await this.RetriveClient();
     await this.RetriveProduct();
-    this.dataForm.get('date')!.setValue(new Date());
+
+
+  }
+
+  private mapInvoiceItems(items: InvoiceResponse['invoiceItems']): Product[] {
+    return items.map(i => ({
+      productIDFK: i.product.uuid.toString(),
+      unity: i.unit,
+      tax: Number(i.taxPercentage),
+      quantity: Number(i.qty),
+      price: Number(i.salePrice),
+      discount: Number(i.discountAmount),
+      total: Number(i.netPrice),
+      uuid: i.uuid
+    }));
+  }
+
+  private populateFormForEdit(): void {
+
+    const editInv = this.invoiceService.SelectedData!;
+
+    this.dataForm.patchValue({
+      invoiceType: Number(editInv.invoiceType),
+      taxType: Number(editInv.taxType),
+      date: new Date(editInv.date),
+      note: editInv.note,
+      client: editInv.clientIDFK == '-1' ? '' : Number(editInv.clientIDFK)
+    });
+
+
+    this.product = this.mapInvoiceItems(editInv.invoiceItems);
+
+
+    this.calculateTotals();
   }
 
   async RetriveClient() {
@@ -227,6 +262,23 @@ export class AddInvoiceComponent {
         return;
       }
 
+      if (!this.hasValidProductList()) {
+        this.btnLoading = false;
+        let message = this.layoutService.config.lang == 'en' ? 'Please add at least one product and fill out all its fields.' : 'الرجاء اضافة صنف واحد على الاقل للاستمرار'
+
+        this.layoutService.showError(this.messageService, 'toast', true, message);
+        return;
+      }
+
+      if (!this.allTotalsPositive()) {
+        this.btnLoading = false;
+        const msg = this.layoutService.config.lang === 'en'
+          ? 'Each product total must be greater than zero.'
+          : 'يجب أن يكون مجموع كل صنف أكبر من صفر';
+        this.layoutService.showError(this.messageService, 'toast', true, msg);
+        return;
+      }
+
 
       await this.Save();
     } catch (exceptionVar) {
@@ -242,18 +294,40 @@ export class AddInvoiceComponent {
     if (this.invoiceService.SelectedData != null) {
       // update
 
-      // var invoice: invoiceUpdateRequest = {
-      //   uuid: this.invoiceService.SelectedData?.uuid?.toString(),
-      //   sortID: this.dataForm.controls['sortID'].value.toString() == '' ? '0' : this.dataForm.controls['sortID'].value.toString(),
-      //   invoiceTranslation: invoiceTranslation,
-      //   price: this.dataForm.controls['invoicePrice'].value.toString(),
+      var invoice: InvoiceUpdateRequest = {
+        uuid: this.invoiceService.SelectedData.uuid,
+        invoiceType: this.dataForm.controls['invoiceType'].value.toString(),
+        taxType: this.dataForm.controls['taxType'].value.toString(),
+        date: date.toISOString(),
+        clientIDFK: this.dataForm.controls['client'].value == '' ? '-1' : this.dataForm.controls['client'].value.toString(),
+        note: this.dataForm.controls['note'].value.toString(),
+        invoiceItems: [],
+        employeeIDFK: this.userService.currentUser.loggedInUser.toString(),
+        total: this.total.toString(),
+        tax: this.tax.toString(),
+        discount: this.discount.toString()
 
-      // };
+      };
+      invoice.invoiceItems = this.product.map(item => {
+        const discPct = 0;
+        return {
+          productIDFK: item.productIDFK,
+          taxPercentage: item.tax.toString(),
+          unit: item.unity,
+          qty: item.quantity.toString(),
+          salePrice: item.price.toString(),
+          discountPercentage: discPct.toFixed(2),
+          discountAmount: item.discount.toString(),
+          netPrice: item.total.toString(),
+          invoiceIDFK: '',
+          uuid: item.uuid
+        };
+      });
 
-      // response = await this.invoiceService.Update(invoice);
+      response = await this.invoiceService.Update(invoice);
     } else {
       // add
-      console.log('HERE 3')
+
       var addinvoice: InvoiceRequest = {
         invoiceType: this.dataForm.controls['invoiceType'].value.toString(),
         taxType: this.dataForm.controls['taxType'].value.toString(),
@@ -274,7 +348,7 @@ export class AddInvoiceComponent {
           productIDFK: item.productIDFK,
           taxPercentage: item.tax.toString(),
           unit: item.unity,
-          qTY: item.quantity.toString(),
+          qty: item.quantity.toString(),
           salePrice: item.price.toString(),
           discountPercentage: discPct.toFixed(2),
           discountAmount: item.discount.toString(),
@@ -290,6 +364,7 @@ export class AddInvoiceComponent {
 
     if (response?.requestStatus?.toString() == '200') {
       this.layoutService.showSuccess(this.messageService, 'toast', true, response?.requestMessage);
+      this.resetForm();
       if (this.invoiceService.SelectedData == null) {
       } else {
         this.resetForm();
@@ -304,6 +379,23 @@ export class AddInvoiceComponent {
 
   resetForm() {
     this.dataForm.reset();
+    this.dataForm.get('date')!.setValue(new Date());
+
+
+    this.product = [{
+      productIDFK: '',
+      unity: '',
+      tax: 0,
+      quantity: 0,
+      price: 0,
+      discount: 0,
+      total: 0
+    }];
+
+    this.calculateTotals();
+
+
+    this.submitted = false;
   }
 
   addRow() {
@@ -320,6 +412,8 @@ export class AddInvoiceComponent {
 
   removeRow(index: number) {
     this.product.splice(index, 1);
+
+    this.calculateTotals();
   }
 
   onItemChange(item: Product) {
@@ -361,9 +455,29 @@ export class AddInvoiceComponent {
     this.onItemChange(this.product[rowIndex]);
   }
 
+  private hasValidProductList(): boolean {
+
+    if (!Array.isArray(this.product) || this.product.length === 0) {
+      return false;
+    }
+    return this.product.some(item =>
+      Object.values(item).every(
+        v => v !== null && v !== undefined && v !== ''
+      )
+    );
+  }
+
+  private allTotalsPositive(): boolean {
+
+    if (!Array.isArray(this.product) || this.product.length === 0) {
+      return false;
+    }
+    return this.product.every(item => item.total > 0);
+  }
 
 
- 
+
+
 
 
 }

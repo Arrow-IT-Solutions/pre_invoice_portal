@@ -49,6 +49,9 @@
               <label>{{ 'VatNumber_AddSettings' | translate }}</label>
             </div>
           </div>
+          <div>
+            <app-img-control (onSelected)="OnSelectFile($event)" [fileInput]="fileInput"></app-img-control>
+          </div>
         </div>
       </div>
     </div>
