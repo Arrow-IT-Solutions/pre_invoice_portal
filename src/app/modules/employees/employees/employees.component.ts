@@ -41,7 +41,6 @@ export class EmployeesComponent {
       employeeName: [''],
       phone: [''],
       id: [''],
-      role: [''],
       userName: ['']
     });
   }

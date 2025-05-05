@@ -336,7 +336,6 @@
   "productprice":"Price",
   "productDiscount":"Discount amount",
   "Types":"Products",
-  "invoiceDate":"invoice Date",
   "totalinvoice":"Total",
   "totalproducts":"Total products",
   "Create_Product":"Create new Product",
@@ -379,8 +378,10 @@
   "NameEn_AddSettings" : "Company Name in English",
   "clientName_Client" : "Name",
   "Phone_Client" : "Phone",
-  "Add_Item":"Add Item"
-  
+  "Add_Item":"Add Item",
+  "Delete" : "Delete",
+  "ProductName" : "Description"
+
 
 
 

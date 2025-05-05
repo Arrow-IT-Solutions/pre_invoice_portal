@@ -70,6 +70,9 @@ export interface InvoiceUpdateRequest extends RequestBase {
   total: string;
   discount: string;
   tax: string;
+  invoiceItems: InvoiceItemRequest[];
+  invoiceType: string;
+  date: string
 }
 
 export interface InvoiceRequest extends RequestBase {
@@ -89,7 +92,7 @@ export interface InvoiceItemRequest extends RequestBase {
   productIDFK: string;
   taxPercentage: string;
   unit: string;
-  qTY: string;
+  qty: string;
   salePrice: string;
   discountPercentage: string;
   discountAmount: string;
@@ -101,7 +104,7 @@ export interface InvoiceItemUpdateRequest extends RequestBase {
   productIDFK: string;
   taxPercentage: string;
   unit: string;
-  qTY: string;
+  qty: string;
   salePrice: string;
   discountPercentage: string;
   discountAmount: string;
@@ -115,7 +118,7 @@ export interface InvoiceItemResponse extends ResponseBase {
   productIDFK: string;
   taxPercentage: string;
   unit: string;
-  qTY: string;
+  qty: string;
   salePrice: string;
   discountPercentage: string;
   discountAmount: string;
