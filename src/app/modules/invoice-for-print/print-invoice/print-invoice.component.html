@@ -1,19 +1,19 @@
 <div class="container1" style="width: 100%;
 display: flex;
-flex-direction: column; 
+flex-direction: column;
 padding-top: 0.5rem;
 padding-bottom: 0.5rem;">
-  <div class="actions" >
+  <div class="actions">
     <button class="btn btn-primary" (click)="print()">
-      Print Invoice
+      {{'Print_PrintInvoice' | translate}}
       <img src="../../../../assets/images/icons8-print-40.png" alt="">
     </button>
-    <button class="btn btn-primary"  (click)="backHome()" >Back
+    <button class="btn btn-primary" (click)="backHome()">{{'Back_PrintInvoice' | translate}}
       <img src="../../../../assets/images/icons8-arrow-50.png" alt="">
     </button>
-    </div>
-    <div class=" a4-page" id="invoiceContent" #invoiceContent style="size: A4 landscape;
-width: 297mm; 
+  </div>
+  <div class=" a4-page" id="invoiceContent" #invoiceContent style="size: A4 landscape;
+width: 297mm;
 height: 210mm;
 margin: auto;
 padding: 10mm;
@@ -23,203 +23,158 @@ box-sizing: border-box;
 text-align: center;
 border: 1px solid #dee2e6;
 border-radius: 0.25rem;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl;" >
-  <div class="header"   
-  [ngStyle]="{ direction: 'ltr' }" style="display: flex;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl;">
+    <div class="header" [ngStyle]="{ direction: 'ltr' }" style="display: flex;
   padding-bottom: 5mm;">
-    <div class="logo-container" style="width: 10rem;">
-        <img src="../../../../assets/images/Property 1=Logo with Type.svg" alt="" style="width: 100%;">
+      <div class="logo-container" style="width: 10rem;">
+        <img [src]="setting.logo" alt="" style="width: 100%;">
+      </div>
     </div>
-  </div>
-  <div class="invoice-info" style="display: flex; flex-direction: column;
+    <div class="invoice-info" style="display: flex; flex-direction: column;
   row-gap: 1mm; padding-bottom: 0.2rem;">
-    <div class="invoice-info__items" style="background-color: #E6F5FC;  display: flex; width: 80%; column-gap: 3rem;padding: 1rem;">
-       <div class="invoice-num">
-        <div>
+      <div class="invoice-info__items"
+        style="background-color: #E6F5FC;  display: flex; width: 80%; column-gap: 3rem;padding: 1rem;">
+        <div class="invoice-num">
+          <div>
 
-            <label for=""> {{'invoiceNum' | translate}}</label>
-            <label id="input" style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">88765</label>
-
-          </div>
-       </div>
-       <div class="invoice-Date">
-        <div>
-
-            <label for=""> {{'invoiceDate' | translate}}</label>
-            <label id="input" style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">5-7-2025</label>
+            <label for=""> {{'invoiceNum_PrintInvoice' | translate}}</label>
+            <label id="input"
+              style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.invoiceNo}}</label>
 
           </div>
-       </div>
-       <div class="VATNo_Setting">
-        <div>
-
-            <label for=""> {{'VATNo_Setting' | translate}}</label>
-            <label id="input" style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">123</label>
-
-          </div>
-       </div>
-     
-    </div>
-
-     <div class="invoice-info__items" style="  display: flex; width: 100%; column-gap: 2rem;padding: 1rem;">
-        <div class="client-Name">
-            <div>
-    
-                <label for=""> {{'client-Name' | translate}}</label>
-                <label id="input" style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">نور سليم</label>
-    
-              </div>
-           </div>
-        <div class="client-phone">
-         <div>
- 
-             <label for=""> {{'client-phone' | translate}}</label>
-             <label id="input" style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">00963958902520</label>
- 
-           </div>
         </div>
-        <div class="clientAddress">
-         <div>
- 
-             <label for=""> {{'clientAddress' | translate}}</label>
-             <label id="input" style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">Syria-Homs</label>
- 
-           </div>
+        <div class="invoice-Date">
+          <div>
+
+            <label for=""> {{'invoiceDate_PrintInvoice' | translate}}</label>
+            <label id="input"
+              style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.date
+              | date : 'dd-MM-yyyy'}}</label>
+
+          </div>
         </div>
-      
-     </div>
-  </div>
-  <div class="table-wrapper">
-   <table style="width: 100%; ">
-    <tr style="background-color: #8FCA7A;border-bottom: 1px solid #eeeeee;">
-        <th id="productName" style="width: 10rem;" style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A; padding: 0.5rem;width: 20rem; color: white;">{{'StatementName' | translate}}</th>
-        <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">{{'productQuantity' | translate}}</th>
-        <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">{{'UnitPrice' | translate}}</th>
-        <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">{{'TaxRate' | translate}}</th>
-        <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">{{'Total' | translate}}</th>
-        
-      </tr>
-      <tr id="trContainer">
-        <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-          <label for="">fabric</label>
-        </td>
-          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-            <label for="">3</label>
-          </td>
-          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">22$</label>
-            </td>
-            <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">8%</label>
-            </td>
-            <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">20.24$</label>
-            </td>
-        
-      </tr>
-      <tr id="trContainer">
-        <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-          <label for="">fabric</label>
-        </td>
-          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-            <label for="">3</label>
-          </td>
-          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">22$</label>
-            </td>
-            <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">8%</label>
-            </td>
-            <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">20.24$</label>
-            </td>
-        
-      </tr> <tr id="trContainer">
-        <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-          <label for="">fabric</label>
-        </td>
-          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-            <label for="">3</label>
-          </td>
-          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">22$</label>
-            </td>
-            <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">8%</label>
-            </td>
-            <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">20.24$</label>
-            </td>
-        
-      </tr> <tr id="trContainer">
-        <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-          <label for="">fabric</label>
-        </td>
-          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-            <label for="">3</label>
-          </td>
-          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">22$</label>
-            </td>
-            <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">8%</label>
-            </td>
-            <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
-              <label for="">20.24$</label>
-            </td>
-        
-      </tr>  
-   </table>
-   
-    
-  </div>
-  <div class="count" style="display: flex;flex-direction: column;
-   row-gap: 0.1rem;width: 40%;position: absolute;bottom: 7rem;left: 0;padding-left: 1rem;">
-   <div class="discount" style="display: flex; column-gap: 0.4rem;justify-content: space-between;font-size: 1rem;font-weight: bold;">
-    <label for=""> {{'discounts' | translate}}</label>
-    <label id="input" style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">00000000.00SR</label>
-   </div>
-   <div class="total" style="display: flex; column-gap: 0.4rem;justify-content: space-between;font-size: 1rem;font-weight: bold;">
-    <label for=""> {{'Total' | translate}}</label>
-    <label id="input" style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">00000000.00SR</label>
-   </div>
-   <div class="tax" style="display: flex; column-gap: 0.4rem;padding-bottom: 0.5rem;border-bottom: 1px black solid;justify-content: space-between;font-size: 1rem;font-weight: bold;">
-    <label for=""> {{'TotalTax' | translate}}</label>
-    <label id="input" style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">00000000.00SR</label>
-   </div>
-   <div class="" style="display: flex; column-gap: 0.4rem;color: #8FCA7A;justify-content: space-between;font-weight: bold;font-size: 1rem;">
-    <label for=""> {{'TotalPrintinvoice' | translate}}</label>
-    <label id="input" style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">00000000.00SR</label>
-   </div>
+        <div class="VATNo_Setting">
+          <div>
 
-   </div>
-   <div class="notes">
-    <div style="display: flex;
-    flex-direction: column;position: absolute;right: 1rem;bottom: 3rem;">
+            <label for=""> {{'VATNo_PrintInvoice' | translate}}</label>
+            <label id="input"
+              style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">{{setting.vatNo}}</label>
 
-        <label for="" style="font-weight: bold;"> {{'notes' | translate}}:</label>
-        <label id="input" style="border: none;border-bottom: 2px dotted black; word-wrap: break-word;display: inline-block;padding-left: 1rem;padding-right: 1rem;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, odio? Aspernatur, praesentium saepe nisi assumenda numquam beatae  </label>
+          </div>
+        </div>
 
       </div>
-   </div>
-   <div class="footer" style="display: flex;width: 100%;justify-content: space-around;background-color: #8FCA7A;color: white;font-weight: bold;position: absolute;bottom: 0;left: 0;right: 0;padding: 0.3rem;">
-    <div class="name">
-        <span>{{'CompanyName_Setting' | translate}}:</span>
-        <span>AlKarmi</span>
+
+      <div class="invoice-info__items" style="  display: flex; width: 100%; column-gap: 2rem;padding: 1rem;">
+        <div class="client-Name">
+          <div>
+
+            <label for=""> {{'clientName_PrintInvoice' | translate}}</label>
+            <label id="input"
+              style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">{{
+              client?.clientTranslation![layoutService.config.lang]?.firstName }} {{
+              client?.clientTranslation![layoutService.config.lang]?.lastName }}</label>
+
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="VatNumber">
-        <span>{{'VatNumber_AddSettings' | translate}}:</span>
-        <span>123</span>
-    </div>
-    <div class="Commercial_number">
-        <span>{{'Commercial_number' | translate}}:</span>
-        <span>123456</span>
-    </div>
-    <div class="location">
-        <span>{{'company_location' | translate}}:</span>
-        <span>Irbid</span>
-    </div>
-   </div>
- 
+    <div class="table-wrapper">
+      <table style="width: 100%; ">
+        <tr style="background-color: #8FCA7A;border-bottom: 1px solid #eeeeee;">
+          <th id="productName" style="width: 10rem;"
+            style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A; padding: 0.5rem;width: 20rem; color: white;">
+            {{'StatementName_PrintInvoice' | translate}}</th>
+          <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">
+            {{'productQuantity_PrintInvoice' | translate}}</th>
+          <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">
+            {{'UnitPrice_PrintInvoice'
+            | translate}}</th>
+          <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">
+            {{'TaxRate_PrintInvoice' |
+            translate}}</th>
+          <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">
+            {{'Total_PrintInvoice' |
+            translate}}</th>
+
+        </tr>
+        <tr id="trContainer" *ngFor="let item of invoiceResponse?.invoiceItems">
+          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
+            <label for="">{{item?.product?.productTranslation![layoutService.config.lang]?.name}}</label>
+          </td>
+          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
+            <label for="">{{ item.qty }}</label>
+          </td>
+          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
+            <label for="">{{ item.salePrice }}</label>
+          </td>
+          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
+            <label for="">{{ item.taxPercentage }}%</label>
+          </td>
+          <td style="border: 0.5px dotted #eeeeee;padding: 0.5rem;">
+            <label for="">{{ item.netPrice }}</label>
+          </td>
+
+        </tr>
+      </table>
+
 
     </div>
+    <div class="count" style="display: flex;flex-direction: column;
+   row-gap: 0.1rem;width: 40%;position: absolute;bottom: 7rem;left: 0;padding-left: 1rem;">
+      <div class="discount"
+        style="display: flex; column-gap: 0.4rem;justify-content: space-between;font-size: 1rem;font-weight: bold;">
+        <label for=""> {{'discounts_PrintInvoice' | translate}}</label>
+        <label id="input"
+          style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.discount}}</label>
+      </div>
+      <div class="total"
+        style="display: flex; column-gap: 0.4rem;justify-content: space-between;font-size: 1rem;font-weight: bold;">
+        <label for=""> {{'Total_PrintInvoice' | translate}}</label>
+        <label id="input"
+          style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.total}}</label>
+      </div>
+      <div class="tax"
+        style="display: flex; column-gap: 0.4rem;padding-bottom: 0.5rem;border-bottom: 1px black solid;justify-content: space-between;font-size: 1rem;font-weight: bold;">
+        <label for=""> {{'TotalTax_PrintInvoice' | translate}}</label>
+        <label id="input"
+          style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.tax}}</label>
+      </div>
+      <div class=""
+        style="display: flex; column-gap: 0.4rem;color: #8FCA7A;justify-content: space-between;font-weight: bold;font-size: 1rem;">
+        <label for=""> {{'TotalPrintinvoice_PrintInvoice' | translate}}</label>
+        <label id="input" style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">
+          {{netTotal}}</label>
+      </div>
+
+    </div>
+    <div class="notes">
+      <div style="display: flex;
+    flex-direction: column;position: absolute;right: 1rem;bottom: 3rem;">
+
+        <label for="" style="font-weight: bold;"> {{'notes_PrintInvoice' | translate}}:</label>
+        <label id="input"
+          style="border: none;border-bottom: 2px dotted black; word-wrap: break-word;display: inline-block;padding-left: 1rem;padding-right: 1rem;">{{invoiceResponse?.note}}
+        </label>
+
+      </div>
+    </div>
+    <div class="footer"
+      style="display: flex;width: 100%;justify-content: space-around;background-color: #8FCA7A;color: white;font-weight: bold;position: absolute;bottom: 0;left: 0;right: 0;padding: 0.3rem;">
+      <div class="name">
+        <span>{{'CompanyName_PrintInvoice' | translate}}:</span>
+        <span> {{setting.settingTranslation![layoutService.config.lang]?.name}}</span>
+      </div>
+      <div class="VatNumber">
+        <span>{{'VatNumber_PrintInvoice' | translate}}:</span>
+        <span> {{setting.vatNo}}</span>
+      </div>
+      <div class="location">
+        <span>{{'companylocation_PrintInvoice' | translate}}:</span>
+        <span> {{setting.location}}</span>
+      </div>
+    </div>
+
+
+  </div>

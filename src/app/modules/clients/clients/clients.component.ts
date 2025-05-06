@@ -84,12 +84,13 @@ export class ClientsComponent {
       this.FillData();
     });
   }
+
   confirmDelete(row: ClientResponse) {
 
     console.log(row)
     this.confirmationService.confirm({
-      message: "Do_you_want_to_delete_this_record?",
-      header: "Delete_Confirmation",
+      message: this.translate.instant('Do_you_want_to_delete_this_record?'),
+      header: this.translate.instant('Delete_Confirmation'),
       icon: 'pi pi-info-circle',
       key: 'positionDialog',
       closeOnEscape: true,
@@ -109,18 +110,13 @@ export class ClientsComponent {
     });
   }
 
-
-
-
-  getFirstChar() { }
-
-
   async resetform() {
     this.isResetting = true;
     this.dataForm.reset();
     await this.FillData();
     this.isResetting = false;
   }
+
   OnChange() {
     if (this.isResetting) { return }; // Do nothing if resetting
 
@@ -130,6 +126,7 @@ export class ClientsComponent {
     }, this.doneTypingInterval);
 
   }
+
   paginate(event: any) {
     this.pageSize = event.rows
     this.first = event.first

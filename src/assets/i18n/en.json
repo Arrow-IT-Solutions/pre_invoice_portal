@@ -389,9 +389,30 @@
   "TotalTax":"Total Tax",
   "TotalPrintinvoice":"Total",
   "Commercial_number":"Commercial number",
-  "company_location":"Location"
+  "company_location":"Location",
   "Delete" : "Delete",
-  "ProductName" : "Description"
+  "ProductName" : "Description",
+  "invoiceNum_PrintInvoice" : "Invoice Number",
+  "invoiceDate_PrintInvoice" : "Date",
+  "VATNo_PrintInvoice" : "VAT Number",
+  "clientName_PrintInvoice" : "Client Name",
+  "StatementName_PrintInvoice" : "Description",
+  "productQuantity_PrintInvoice" : "Quantity",
+  "UnitPrice_PrintInvoice" : "Unit Price",
+  "TaxRate_PrintInvoice" : "Tax",
+  "Total_PrintInvoice" : "Total",
+  "discounts_PrintInvoice" : "Discount",
+  "TotalTax_PrintInvoice" : "Tax Amount",
+  "TotalPrintinvoice_PrintInvoice" : "Total",
+  "notes_PrintInvoice" : "Notes",
+  "CompanyName_PrintInvoice" : "Company Name",
+  "VatNumber_PrintInvoice" : "VAT Number",
+  "companylocation_PrintInvoice" : "Company Location",
+  "Print_PrintInvoice" : "Print",
+  "Back_PrintInvoice" : "Back",
+  "Yes": "Yes",
+  "No" : "No"
+
 
 
 

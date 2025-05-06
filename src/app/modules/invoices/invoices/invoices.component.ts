@@ -151,8 +151,8 @@ export class InvoicesComponent {
 
     console.log(row)
     this.confirmationService.confirm({
-      message: "Do_you_want_to_delete_this_record?",
-      header: "Delete_Confirmation",
+      message: this.translate.instant('Do_you_want_to_delete_this_record?'),
+      header: this.translate.instant('Delete_Confirmation'),
       icon: 'pi pi-info-circle',
       key: 'positionDialog',
       closeOnEscape: true,
@@ -171,8 +171,10 @@ export class InvoicesComponent {
       },
     });
   }
+
   Print(row: InvoiceResponse | null = null) {
-    console.log(row)
+
+    this.invoiceService.SelectedData = row
     this.route.navigate(['printInvoice'], { queryParams: { id: row?.uuid } });
   }
 
