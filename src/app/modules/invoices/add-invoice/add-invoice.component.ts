@@ -46,6 +46,8 @@ export class AddInvoiceComponent {
   netTotal: number
   products: ProductResponse[] = []
   submitted: boolean = false;
+  clientUUID: string
+  client: ClientResponse
 
 
 
@@ -83,7 +85,9 @@ export class AddInvoiceComponent {
   async ngOnInit() {
     this.dataForm.get('date')!.setValue(new Date());
     if (this.invoiceService.SelectedData != null) {
-      console.log(this.invoiceService.SelectedData)
+      if (this.invoiceService.SelectedData.clientIDFK != '-1') {
+        await this.FillClientID(this.invoiceService.SelectedData.clientIDFK)
+      }
       this.populateFormForEdit();
     }
     const invoiceTypeResponse = await this.constantService.Search('InvoiceType') as any;
@@ -118,9 +122,8 @@ export class AddInvoiceComponent {
       taxType: Number(editInv.taxType),
       date: new Date(editInv.date),
       note: editInv.note,
-      client: editInv.clientIDFK == '-1' ? '' : Number(editInv.clientIDFK)
+      client: editInv.clientIDFK == '-1' ? '' : this.clientUUID
     });
-
 
     this.product = this.mapInvoiceItems(editInv.invoiceItems);
 
@@ -278,8 +281,6 @@ export class AddInvoiceComponent {
         this.layoutService.showError(this.messageService, 'toast', true, msg);
         return;
       }
-
-
       await this.Save();
     } catch (exceptionVar) {
     } finally {
@@ -475,9 +476,16 @@ export class AddInvoiceComponent {
     return this.product.every(item => item.total > 0);
   }
 
+  async FillClientID(id: any = null): Promise<string> {
 
 
+    const response = await this.clientService.GetByID(id) as any
+    this.client = response
+    this.clientUUID = this.client.uuid.toString()
+    console.log(this.clientUUID)
 
+    return this.clientUUID.toString()
 
+  }
 
 }

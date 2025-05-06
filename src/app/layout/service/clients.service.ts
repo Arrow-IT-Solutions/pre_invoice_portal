@@ -39,5 +39,12 @@ export class ClientsService {
 
   }
 
+  async GetByID(id: string) {
+
+    const apiUrl = `/api/client/${id}`;
+    return await this.httpClient.get(apiUrl, id)
+
+  }
+
 
 }

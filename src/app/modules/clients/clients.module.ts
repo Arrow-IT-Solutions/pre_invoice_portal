@@ -28,7 +28,7 @@ import { UserResponse, UserTranslationRequest, UserTranslationUpdateRequest } fr
 })
 export class ClientsModule { }
 export interface ClientResponse extends ResponseBase {
-  uuid?: string
+  uuid: string
   phone?: string,
   clientTranslation?: { [key: string]: ClientTranslationResponse };
 }
