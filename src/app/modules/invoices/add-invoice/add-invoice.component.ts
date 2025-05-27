@@ -12,6 +12,7 @@ import { ClientsService } from 'src/app/layout/service/clients.service';
 import { UserService } from 'src/app/Core/services/user.service';
 import { ProductResponse, ProductSearchRequest } from '../../products/products.module';
 import { ProductService } from 'src/app/layout/service/products.service';
+import { Router } from '@angular/router';
 interface Product {
   productIDFK: string;
   unity: string;
@@ -58,7 +59,8 @@ export class AddInvoiceComponent {
     public layoutService: LayoutService,
     public userService: UserService,
     public messageService: MessageService,
-    public productService: ProductService
+    public productService: ProductService,
+    public route: Router,
   ) {
     this.dataForm = this.formBuilder.group({
       invoiceType: ['', Validators.required],
@@ -267,7 +269,9 @@ export class AddInvoiceComponent {
 
       if (!this.hasValidProductList()) {
         this.btnLoading = false;
-        let message = this.layoutService.config.lang == 'en' ? 'Please add at least one product and fill out all its fields.' : 'الرجاء اضافة صنف واحد على الاقل للاستمرار'
+        let message = this.layoutService.config.lang == 'en'
+          ? 'Please add at least one product and fill out all its fields.'
+          : 'الرجاء اضافة صنف واحد على الاقل للاستمرار'
 
         this.layoutService.showError(this.messageService, 'toast', true, message);
         return;
@@ -326,6 +330,7 @@ export class AddInvoiceComponent {
       });
 
       response = await this.invoiceService.Update(invoice);
+      console.log(response)
     } else {
       // add
 
@@ -366,9 +371,13 @@ export class AddInvoiceComponent {
     if (response?.requestStatus?.toString() == '200') {
       this.layoutService.showSuccess(this.messageService, 'toast', true, response?.requestMessage);
       this.resetForm();
+      console.log(response)
+      this.Print(response)
       if (this.invoiceService.SelectedData == null) {
       } else {
         this.resetForm();
+
+
       }
     } else {
       this.layoutService.showError(this.messageService, 'toast', true, response?.requestMessage);
@@ -486,6 +495,12 @@ export class AddInvoiceComponent {
 
     return this.clientUUID.toString()
 
+  }
+
+  Print(row: InvoiceResponse | null = null) {
+
+    this.invoiceService.SelectedData = row
+    this.route.navigate(['printInvoice'], { queryParams: { id: row?.uuid } });
   }
 
 }

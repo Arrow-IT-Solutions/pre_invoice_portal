@@ -31,7 +31,9 @@ export class AddProductComponent {
     })
 
   }
-
+  get form(): { [key: string]: AbstractControl } {
+    return this.dataForm.controls;
+  }
   async ngOnInit() {
     try {
       this.loading = true;
