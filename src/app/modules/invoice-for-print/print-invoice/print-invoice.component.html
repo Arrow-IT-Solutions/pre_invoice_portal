@@ -23,80 +23,83 @@ box-sizing: border-box;
 text-align: center;
 border: 1px solid #dee2e6;
 border-radius: 0.25rem;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl;">
-    <div class="header" [ngStyle]="{ direction: 'ltr' }" style="display: flex;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl; position: relative;">
+    <div class="header" [ngStyle]="{ direction: 'rtl' }" style="
+    display: flex; flex-direction: column; 
+    margin: auto;
   padding-bottom: 5mm;">
-      <div class="logo-container" style="width: 10rem;">
+  <span style="font-weight: bold; font-size: 2rem;">شركة أكرم العكش وإخوانه</span>
+  <span style="font-size: 1rem;">أقمشة وجلود ولوازم الألبسة والأحذية والحقائب والمفروشات</span>
+  <div style="display: flex; column-gap: 0.5rem; margin: auto; padding-bottom: 0.3mm; border-bottom: 1px solid black;">
+    <span style="font-size: 0.8rem;">Fax:009624899370</span>
+    <span style="font-size: 0.8rem;">Tel:0096264889565</span>
+    <span style="font-size: 0.8rem;">Mob:+962799975292</span>
+  </div>
+  <div style="padding:1mm 2mm;border: 1px solid black;margin: auto;margin-top: 2mm;">فاتورة-Invoice</div>
+  <div style="padding:1mm 4mm;;margin: auto;margin-top: 2mm;background-color:#E6F5FC ; ">{{invoiceResponse?.invoiceTypeValue}}</div>
+       <!-- <div class="logo-container" style="width: 10rem;">
         <img [src]="setting.logo" alt="" style="width: 100%;">
-      </div>
+      </div> -->
     </div>
-    <div class="invoice-info" style="display: flex; flex-direction: column;
-  row-gap: 1mm; padding-bottom: 0.2rem;">
-      <div class="invoice-info__items"
-        style="background-color: #E6F5FC;  display: flex; width: 80%; column-gap: 3rem;padding: 1rem;">
-        <div class="invoice-num">
-          <div>
-
-            <label for=""> {{'invoiceNum_PrintInvoice' | translate}}</label>
-            <label id="input"
-              style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.invoiceNo}}</label>
-
-          </div>
-        </div>
-        <div class="invoice-Date">
-          <div>
-
-            <label for=""> {{'invoiceDate_PrintInvoice' | translate}}</label>
-            <label id="input"
-              style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.date
-              | date : 'dd-MM-yyyy'}}</label>
-
-          </div>
-        </div>
-        <div class="VATNo_Setting">
-          <div>
-
-            <label for=""> {{'VATNo_PrintInvoice' | translate}}</label>
-            <label id="input"
-              style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">{{setting.vatNo}}</label>
-
-          </div>
-        </div>
-
-      </div>
-
-      <div class="invoice-info__items" style="  display: flex; width: 100%; column-gap: 2rem;padding: 1rem;">
-        <div class="client-Name">
-          <div>
-
-            <label for=""> {{'clientName_PrintInvoice' | translate}}</label>
-            <label id="input"
-              style="direction: ltr ;border: none;border-bottom: 2px dotted black;padding-left: 3.5rem;padding-right: 3.5rem;">{{
-              client?.clientTranslation![layoutService.config.lang]?.firstName }} {{
-              client?.clientTranslation![layoutService.config.lang]?.lastName }}</label>
-
-          </div>
-        </div>
-
-      </div>
+    <div class="invoice-info" style="display: flex;justify-content: space-between;
+   padding-bottom: 0.2rem;">
+   <div style="display: flex;flex-direction: column;row-gap: 0.5mm;position: absolute;top: 10rem;">
+    <div style="display: flex;flex-direction: column;row-gap: 0.5mm;">
+      <span>رقم ضريبة المبيعات:</span>
+      <span>{{setting.vatNo}}</span>
     </div>
-    <div class="table-wrapper">
+    <div style="display: flex; column-gap: 0.5rem;">
+      <span>السيد/السادة:</span>
+      <span>{{client?.clientTranslation![layoutService.config.lang]?.firstName }} {{
+              client?.clientTranslation![layoutService.config.lang]?.lastName }}</span>
+    </div>
+    
+   </div>
+   <div style="display: flex;flex-direction: column;row-gap: 1mm;margin-left: 2rem;margin-bottom: 1rem; justify-content: center; align-items: center;position: absolute;top: 6rem;left: 0;">
+   <div style="width: 5rem;margin-bottom: 3mm;">
+    <img src="../../../../assets/images/invoice.jpg" alt="" style="width: 100%;">
+   </div>
+   <div style="display: flex; column-gap: 0.5rem;">
+      <span>رقم الفاتورة:</span>
+      <span>{{invoiceResponse?.invoiceNo}}</span>
+    </div>
+    <div style="display: flex; column-gap: 0.5rem;">
+      <span>التاريخ:</span>
+      <span>{{invoiceResponse?.date| date : 'dd-MM-yyyy'}}</span>
+    </div>
+   </div>
+      
+    </div>
+    <div class="table-wrapper" style="margin-top: 3rem;border: 1px solid black;min-height: 20rem;">
       <table style="width: 100%; ">
         <tr style="background-color: #8FCA7A;border-bottom: 1px solid #eeeeee;">
           <th id="productName" style="width: 10rem;"
             style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A; padding: 0.5rem;width: 20rem; color: white;">
-            {{'StatementName_PrintInvoice' | translate}}</th>
+            <div style="display: flex;flex-direction: column;">
+              <span>statement</span>
+              <span>البيان</span>
+            </div>
+            </th>
           <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">
-            {{'productQuantity_PrintInvoice' | translate}}</th>
+           <div style="display: flex;flex-direction: column;">
+              <span>Quantity</span>
+              <span>الكمية</span>
+            </div></th>
           <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">
-            {{'UnitPrice_PrintInvoice'
-            | translate}}</th>
+            <div style="display: flex;flex-direction: column;">
+              <span>Unit Price</span>
+              <span>سعر الوحدة</span>
+            </div></th>
           <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">
-            {{'TaxRate_PrintInvoice' |
-            translate}}</th>
+           <div style="display: flex;flex-direction: column;">
+              <span>Tax</span>
+              <span>الضريبة</span>
+            </div></th>
           <th style="border: 0.5px dotted #eeeeee;background-color: #8FCA7A;padding: 0.5rem;color: white;">
-            {{'Total_PrintInvoice' |
-            translate}}</th>
+           <div style="display: flex;flex-direction: column;">
+              <span>Total</span>
+              <span>المجموع</span>
+            </div></th>
 
         </tr>
         <tr id="trContainer" *ngFor="let item of invoiceResponse?.invoiceItems">
@@ -121,60 +124,47 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl;">
 
 
     </div>
-    <div class="count" style="display: flex;flex-direction: column;
-   row-gap: 0.1rem;width: 40%;position: absolute;bottom: 7rem;left: 0;padding-left: 1rem;">
-      <div class="discount"
-        style="display: flex; column-gap: 0.4rem;justify-content: space-between;font-size: 1rem;font-weight: bold;">
-        <label for=""> {{'discounts_PrintInvoice' | translate}}</label>
-        <label id="input"
-          style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.discount}}</label>
+    <div style="display: flex;width: 100%;border: 1px solid black;margin-top: 1mm;">
+      <div style="display: flex;flex-direction: column;row-gap: 1mm;width: 20%;padding: 0.5rem;">
+           <span>{{invoiceResponse?.discount}}</span>
+           <span>{{invoiceResponse?.total}}</span>
+           <span>{{invoiceResponse?.tax}}</span>
+           <span>{{netTotal}}</span>
       </div>
-      <div class="total"
-        style="display: flex; column-gap: 0.4rem;justify-content: space-between;font-size: 1rem;font-weight: bold;">
-        <label for=""> {{'Total_PrintInvoice' | translate}}</label>
-        <label id="input"
-          style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.total}}</label>
+      <div style="display: flex;flex-direction: column;row-gap: 1mm;border-right: 1px solid black;padding: 0.5rem; ">
+        <span >الخصم</span>
+        <span>المجموع قبل الضريبة</span>
+        <span>ضريبة المبيعات</span>
+        <span>المجموع</span>
+          
+        <span style="background-color: #E6F5FC;padding: 1mm 10rem;">سبعون دينارا وفلس(0)</span>
+        
+        
       </div>
-      <div class="tax"
-        style="display: flex; column-gap: 0.4rem;padding-bottom: 0.5rem;border-bottom: 1px black solid;justify-content: space-between;font-size: 1rem;font-weight: bold;">
-        <label for=""> {{'TotalTax_PrintInvoice' | translate}}</label>
-        <label id="input"
-          style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">{{invoiceResponse?.tax}}</label>
-      </div>
-      <div class=""
-        style="display: flex; column-gap: 0.4rem;color: #8FCA7A;justify-content: space-between;font-weight: bold;font-size: 1rem;">
-        <label for=""> {{'TotalPrintinvoice_PrintInvoice' | translate}}</label>
-        <label id="input" style="border: none;padding-left: 3.5rem;padding-right: 3.5rem;">
-          {{netTotal}}</label>
-      </div>
-
+       
     </div>
-    <div class="notes">
-      <div style="display: flex;
-    flex-direction: column;position: absolute;right: 1rem;bottom: 3rem;">
-
-        <label for="" style="font-weight: bold;"> {{'notes_PrintInvoice' | translate}}:</label>
+    <div style="margin: auto;margin-top: 2mm;"><span style="font-size: 0.8rem;">استلمت البضاعة المبينة أعلاه بحالة جيدة والبضاعة المباعة لا تسترد ولا تستبدل</span></div>
+    <div style="display: flex;justify-content: space-evenly;align-items: center;margin-top: 0.5rem;">
+      <div style="display: flex;">
+           
+        <label for="" style="font-weight: bold;">اسم المستلم:</label>
         <label id="input"
-          style="border: none;border-bottom: 2px dotted black; word-wrap: break-word;display: inline-block;padding-left: 1rem;padding-right: 1rem;">{{invoiceResponse?.note}}
+          style="border: none;border-bottom: 2px dotted black; word-wrap: break-word;display: inline-block;padding-left: 8rem;padding-right: 8rem;">
+          {{client?.clientTranslation![layoutService.config.lang]?.firstName }} {{
+              client?.clientTranslation![layoutService.config.lang]?.lastName }}
+        </label>
+
+      </div>
+      <div style="display: flex;">
+           
+        <label for="" style="font-weight: bold;">توقيع المستلم:</label>
+        <label id="input"
+          style="border: none;border-bottom: 2px dotted black; word-wrap: break-word;display: inline-block;padding-left: 8rem;padding-right: 8rem;">
         </label>
 
       </div>
     </div>
-    <div class="footer"
-      style="display: flex;width: 100%;justify-content: space-around;background-color: #8FCA7A;color: white;font-weight: bold;position: absolute;bottom: 0;left: 0;right: 0;padding: 0.3rem;">
-      <div class="name">
-        <span>{{'CompanyName_PrintInvoice' | translate}}:</span>
-        <span> {{setting.settingTranslation![layoutService.config.lang]?.name}}</span>
-      </div>
-      <div class="VatNumber">
-        <span>{{'VatNumber_PrintInvoice' | translate}}:</span>
-        <span> {{setting.vatNo}}</span>
-      </div>
-      <div class="location">
-        <span>{{'companylocation_PrintInvoice' | translate}}:</span>
-        <span> {{setting.location}}</span>
-      </div>
-    </div>
+
 
 
   </div>
