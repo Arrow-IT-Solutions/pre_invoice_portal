@@ -31,6 +31,8 @@ export interface SettingResponse extends ResponseBase {
   vatNo: string,
   lastInvoiceNo: string,
   logo: string,
+  mobile: string,
+  fax: string
 
 }
 export interface SettingSearchRequest extends SearchRequestBase {
@@ -46,6 +48,8 @@ export interface SettingUpdateRequest extends RequestBase {
   vatNo: string,
   lastInvoiceNo: string,
   logo: string,
+  mobile: string,
+  fax: string
 
 }
 
@@ -57,19 +61,27 @@ export interface SettingRequest extends RequestBase {
   vatNo: string,
   lastInvoiceNo: string,
   logo: string,
+  mobile: string,
+  fax: string
 }
 
 export interface SettingTranslationResponse {
   uuid?: string;
   name?: string;
+  subTitle: string,
+  invoiceFooter: string,
   language?: string;
 }
 export interface SettingTranslationRequest {
   uuid?: string;
   name?: string;
+  subTitle: string,
+  invoiceFooter: string,
   language?: string;
 }
 export interface SettingTranslationUpdateRequest {
   uuid?: string;
   name?: string;
+  subTitle: string,
+  invoiceFooter: string,
 }

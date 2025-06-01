@@ -2,43 +2,74 @@
   <span class="material-symbols-outlined fill" id="edit" (click)="openDialog(row)">edit</span>
 
   <div id="tittle">
-    <span>{{'Settings' | translate}}:</span>
+    <span>{{ 'Settings' | translate }}:</span>
   </div>
+
   <div class="container">
     <div class="settings_info">
       <div class="latestinvoice">
         <span id="latest">{{ 'CompanyName_Setting' | translate }} :</span>
-        <span id="info">{{ row.settingTranslation![layoutService.config.lang]?.name }}</span>
+        <span id="info">
+          {{ row.settingTranslation![layoutService.config.lang]?.name }}
+        </span>
       </div>
+
       <div class="location">
         <span class="material-symbols-outlined fill">location_on</span>
         <span id="info">{{ row.location }}</span>
       </div>
+
       <div class="phone">
         <span class="material-symbols-outlined fill">settings_phone</span>
         <span id="info">{{ row.phone }}</span>
       </div>
+
       <div class="email">
         <span class="material-symbols-outlined fill">email</span>
         <span id="info">{{ row.email }}</span>
       </div>
-      <hr>
+
+      <hr />
+
       <div class="latestinvoice">
         <span id="latest">{{ 'lastInvoiceNo_Setting' | translate }} : </span>
         <span id="info">{{ row.lastInvoiceNo }}</span>
       </div>
+
       <div class="latestinvoice">
         <span id="latest">{{ 'VATNo_Setting' | translate }} : </span>
         <span id="info">{{ row.vatNo }}</span>
       </div>
+
+      <hr />
+
+      <div class="latestinvoice">
+        <span id="latest">{{ 'SubTitle_Setting' | translate }} : </span>
+        <span id="info">{{ row.settingTranslation![layoutService.config.lang]?.subTitle }}</span>
+      </div>
+
+      <div class="latestinvoice">
+        <span id="latest">{{ 'Footer_Setting' | translate }} : </span>
+        <span id="info">{{ row.settingTranslation![layoutService.config.lang]?.invoiceFooter }}</span>
+      </div>
+
+      <div class="latestinvoice">
+        <span class="material-symbols-outlined fill">smartphone</span>
+        <span id="info">{{ row.mobile }}</span>
+      </div>
+
+      <div class="latestinvoice">
+        <span class="material-symbols-outlined fill">print</span>
+        <span id="info">{{ row.fax }}</span>
+      </div>
     </div>
+
     <div class="logo-container">
-      <img [src]="row.logo" (click)="showDialog(row.logo)" alt="">
+      <img [src]="row.logo" (click)="showDialog(row.logo)" alt="" />
     </div>
   </div>
-
-
 </div>
+
 <button class="add-button" (click)="openDialog()">
   <span class="material-symbols-outlined">add</span>
 </button>

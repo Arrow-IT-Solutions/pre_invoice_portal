@@ -8,6 +8,7 @@ import { ClientsService } from 'src/app/layout/service/clients.service';
 import { ClientResponse, ClientSearchRequest } from '../../clients/clients.module';
 import { SettingResponse, SettingSearchRequest } from '../../settings/settings.module';
 import { SettingsService } from 'src/app/layout/service/settings.service';
+import { LocalService } from 'src/app/shared/service/local.service';
 @Component({
   selector: 'app-print-invoice',
   templateUrl: './print-invoice.component.html',
@@ -19,7 +20,8 @@ export class PrintInvoiceComponent {
   invoiceResponse: InvoiceResponse | null
   client: ClientResponse
   elmentContent?: string;
-  setting: SettingResponse
+  setting: SettingResponse;
+  only: any
 
   netTotal: Number
 
@@ -28,7 +30,8 @@ export class PrintInvoiceComponent {
     public invoiceService: InvoiceService,
     public printService: PrintService,
     public clientService: ClientsService,
-    public settingSerice: SettingsService) {
+    public settingSerice: SettingsService,
+    public localService: LocalService) {
 
   }
 
@@ -46,6 +49,9 @@ export class PrintInvoiceComponent {
 
   FillData() {
     this.netTotal = Number(this.invoiceResponse?.total) + Number(this.invoiceResponse?.tax)
+
+    this.GetAmountInWords();
+
   }
   backHome() {
     this.route.navigate(['layout-admin/invoices'])
@@ -94,5 +100,13 @@ export class PrintInvoiceComponent {
 
   }
 
+  async GetAmountInWords() {
+    if (this.layoutService.config.lang == "en")
+      this.only = this.localService.amountToEnglishJD(Number(this.netTotal)).toString()
+    else
+      this.only = this.localService.amountToArabicJD(Number(this.netTotal)).toString()
+  }
+
 
 }
+
