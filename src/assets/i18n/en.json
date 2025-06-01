@@ -411,8 +411,14 @@
   "Print_PrintInvoice" : "Print",
   "Back_PrintInvoice" : "Back",
   "Yes": "Yes",
-  "No" : "No"
-
+  "No" : "No",
+  "SubTitle_Setting" : "Sub Title",
+  "Footer_Setting" : "Footer",
+  "Sirs_PrintInvoice" : "Mr./Mrs.",
+  "Tax_PrintInvoice" : "Tax",
+  "RecieverName_PrintInvoice" : "Reciever Name",
+  "ReceiverSignature_PrintInvoice" : "Reciever Signature",
+  "Totalbeforetax_PrintInvoice" : "Total before tax"
 
 
 

@@ -31,7 +31,13 @@ export class AddSettingComponent {
       Latestinvoice: [''],
       VatNumber: [''],
       nameAr: [''],
-      nameEn: ['']
+      nameEn: [''],
+      mobile: [''],
+      fax: [''],
+      subTitleAr: [''],
+      subTitleEn: [''],
+      invoiceFooterAr: [''],
+      invoiceFooterEn: [''],
 
     })
 
@@ -40,9 +46,8 @@ export class AddSettingComponent {
     try {
       this.loading = true;
 
-      this.resetForm();
-
       if (this.settingService.SelectedData != null) {
+        console.log(this.settingService.SelectedData)
         await this.FillData();
       }
     } catch (exceptionVar) {
@@ -74,10 +79,15 @@ export class AddSettingComponent {
     var settingTranslation = [
       {
         name: this.dataForm.controls['nameAr'].value.toString(),
+        subTitle: this.dataForm.controls['subTitleAr'].value.toString(),
+        invoiceFooter: this.dataForm.controls['invoiceFooterAr'].value.toString(),
+
         language: 'ar'
       },
       {
         name: this.dataForm.controls['nameEn'].value == null ? '' : this.dataForm.controls['nameEn'].value.toString(),
+        subTitle: this.dataForm.controls['subTitleEn'].value == null ? '' : this.dataForm.controls['subTitleEn'].value.toString(),
+        invoiceFooter: this.dataForm.controls['invoiceFooterEn'].value == null ? '' : this.dataForm.controls['invoiceFooterEn'].value.toString(),
         language: 'en'
       }
     ];
@@ -93,7 +103,10 @@ export class AddSettingComponent {
         email: this.dataForm.controls['email'].value.toString(),
         lastInvoiceNo: this.dataForm.controls['Latestinvoice'].value.toString(),
         vatNo: this.dataForm.controls['VatNumber'].value.toString(),
-        logo: ''
+        logo: this.file,
+        mobile: this.dataForm.controls['mobile'].value.toString(),
+        fax: this.dataForm.controls['fax'].value.toString(),
+
       };
 
       response = await this.settingService.Update(setting);
@@ -106,7 +119,9 @@ export class AddSettingComponent {
         email: this.dataForm.controls['email'].value.toString(),
         lastInvoiceNo: this.dataForm.controls['Latestinvoice'].value.toString(),
         vatNo: this.dataForm.controls['VatNumber'].value.toString(),
-        logo: ''
+        logo: this.file,
+        mobile: this.dataForm.controls['mobile'].value.toString(),
+        fax: this.dataForm.controls['fax'].value.toString(),
       };
 
       console.log('add', addsetting)
@@ -116,10 +131,12 @@ export class AddSettingComponent {
 
     if (response?.requestStatus?.toString() == '200') {
       this.layoutService.showSuccess(this.messageService, 'toast', true, response?.requestMessage);
+
       if (this.settingService.SelectedData == null) {
         this.resetForm();
+
       } else {
-        this.settingService.Dialog.close();
+        this.settingService.Dialog.Close();
       }
     } else {
       this.layoutService.showError(this.messageService, 'toast', true, response?.requestMessage);
@@ -138,13 +155,18 @@ export class AddSettingComponent {
       VatNumber: this.settingService.SelectedData?.vatNo,
       nameAr: this.settingService.SelectedData?.settingTranslation!['ar'].name,
       nameEn: this.settingService.SelectedData?.settingTranslation!['en'].name,
+      subTitleAr: this.settingService.SelectedData?.settingTranslation!['en'].subTitle,
+      subTitleEn: this.settingService.SelectedData?.settingTranslation!['ar'].subTitle,
+      invoiceFooterAr: this.settingService.SelectedData?.settingTranslation!['ar'].invoiceFooter,
+      invoiceFooterEn: this.settingService.SelectedData?.settingTranslation!['en'].invoiceFooter,
+      mobile: this.settingService.SelectedData?.mobile,
+      fax: this.settingService.SelectedData?.fax,
     };
     this.fileInput = this.settingService.SelectedData?.logo,
       this.img = false
     this.dataForm.patchValue(temp);
 
   }
-
 
   resetForm() {
     this.dataForm.reset();

@@ -404,5 +404,12 @@
   "Print_PrintInvoice" : "طباعة",
   "Back_PrintInvoice" : "العودة",
   "Yes": "نعم",
-  "No" : "لا"
+  "No" : "لا",
+  "SubTitle_Setting" : "العنوان",
+  "Footer_Setting" : "الخاتمة",
+  "Sirs_PrintInvoice" : "السيد/السادة",
+  "Tax_PrintInvoice" : "الضريبة",
+  "RecieverName_PrintInvoice" : "اسم المستلم",
+  "ReceiverSignature_PrintInvoice" : "توقيع المستلم",
+  "Totalbeforetax_PrintInvoice" : "المجموع قبل الضريبة"
 }

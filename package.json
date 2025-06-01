@@ -37,6 +37,7 @@
     "require": "^0.4.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "written-number": "^0.11.1",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
