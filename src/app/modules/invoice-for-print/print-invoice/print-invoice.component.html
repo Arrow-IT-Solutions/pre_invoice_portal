@@ -137,7 +137,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl; posit
         <span>{{invoiceResponse?.discount}}</span>
         <span>{{invoiceResponse?.total}}</span>
         <span>{{invoiceResponse?.tax}}</span>
-        <span>{{netTotal}}</span>
+        <span>{{ netTotal?.toFixed(3) }}</span>
       </div>
       <div style="display: flex;flex-direction: column;row-gap: 1mm;border-right: 1px solid black;padding: 0.5rem; ">
         <span>{{"discounts_PrintInvoice" | translate}}</span>
