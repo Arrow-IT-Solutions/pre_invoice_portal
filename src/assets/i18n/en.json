@@ -418,7 +418,8 @@
   "Tax_PrintInvoice" : "Tax",
   "RecieverName_PrintInvoice" : "Reciever Name",
   "ReceiverSignature_PrintInvoice" : "Reciever Signature",
-  "Totalbeforetax_PrintInvoice" : "Total before tax"
+  "Totalbeforetax_PrintInvoice" : "Total before tax",
+  "ClientName_Client" : "Client Name"
 
 
 

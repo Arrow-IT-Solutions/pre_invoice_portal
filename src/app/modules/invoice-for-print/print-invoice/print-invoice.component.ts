@@ -9,6 +9,7 @@ import { ClientResponse, ClientSearchRequest } from '../../clients/clients.modul
 import { SettingResponse, SettingSearchRequest } from '../../settings/settings.module';
 import { SettingsService } from 'src/app/layout/service/settings.service';
 import { LocalService } from 'src/app/shared/service/local.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-print-invoice',
   templateUrl: './print-invoice.component.html',
@@ -48,7 +49,7 @@ export class PrintInvoiceComponent {
   }
 
   FillData() {
-    this.netTotal = Number(this.invoiceResponse?.total) + Number(this.invoiceResponse?.tax)
+    this.netTotal = Number(this.invoiceResponse?.total) + Number(this.invoiceResponse?.tax) - Number(this.invoiceResponse?.discount)
 
     this.GetAmountInWords();
 
