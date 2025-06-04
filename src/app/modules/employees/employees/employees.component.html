@@ -1,5 +1,5 @@
 <div [formGroup]="dataForm" class="employees">
-  <div class="row mb-4 m-0 flex-row-reverse p-0">
+  <div class="row mb-4 m-0 flex-row-reverse p-1">
     <div class="col-lg-3 col-md-10 col p-0 employees__search">
       <div class="flex flex-wrap justify-content-center gap-3">
         <span class="p-input-icon-left p-0">
@@ -17,7 +17,7 @@
           </div>
         </ng-template>
         <ng-template pTemplate="content">
-          <div class="m-0 box2 d-flex">
+          <div class="m-0 box2 d-flex p-1">
             <div class="filter-title">
               <span class="material-symbols-outlined">filter_alt</span>
               <span>Filter By</span>
@@ -67,7 +67,7 @@
           <div class="col-lg-2 col-md-6 col-sm-6 d-flex card__left">
             <div class="image-container">
               <div class="user-card__image">
-                <img (click)="showDialog(row.image)" style="width: 100px; height: 100px" [src]="row.image" />
+                <img (click)="showDialog(row.image)" style="width: 100px; height: 100px;border-radius: 6px;" [src]="row.image" />
               </div>
             </div>
           </div>

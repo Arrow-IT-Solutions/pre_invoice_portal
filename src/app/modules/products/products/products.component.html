@@ -1,10 +1,10 @@
 <div class="products">
-  <div [formGroup]="dataForm" class="row mb-4 m-0  p-0">
+  <div [formGroup]="dataForm" class="row mb-4 m-0 p-0">
     <div class="container d-flex ">
 
       <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3 ">
         <div class="flex flex-wrap justify-content-center gap-3">
-          <span class="p-input-icon-left p-0">
+          <span class="p-input-icon-left ">
             <i class="pi pi-search"></i>
             <input class="search-field" type="text" placeholder="{{ 'ProductName_Product'| translate }}"
               (ngModelChange)="OnChange()" formControlName="productName" pInputText />
@@ -96,7 +96,17 @@
 
   <ng-template #ListView>
     <div class="row">
-      <div *ngFor="let list of [1, 2, 3, 4]" class="row mx-0 mt-2">
+      <div *ngFor="let list of [1, 2,]" class="col mx-0 mt-2">
+        <p-skeleton height="7.5rem"></p-skeleton>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let list of [1, 2,]" class="col mx-0 mt-2">
+        <p-skeleton height="7.5rem"></p-skeleton>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let list of [1, 2,]" class="col mx-0 mt-2">
         <p-skeleton height="7.5rem"></p-skeleton>
       </div>
     </div>
