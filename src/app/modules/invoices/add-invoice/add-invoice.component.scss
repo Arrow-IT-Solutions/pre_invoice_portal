@@ -2,6 +2,11 @@
 body .p-dropdown-panel {
     z-index: 99999 !important;
   }
+  .p-float-label{
+    label{
+        width: 6rem;
+    }
+  }
 .container{
     padding: 1rem 1rem 1rem 0rem;
     position: relative;
@@ -50,11 +55,14 @@ body .p-dropdown-panel {
         }
         th{
             color: $blue-color;
+            background-color: $primary-color-hover;
         }
         #productName{
             display: flex;
             flex-direction: column;
             row-gap: 0.5rem;
+            width: 22rem;
+            
             button{
                 border: none;
                 background-color:$background-green-color;
@@ -109,29 +117,7 @@ tr>td:not(:first-child) .p-inputtext {
 
 
 }
-// .table {
-//     // position: relative;
-//     height: 10rem;
-//     background-color: red;
-    
-// }
-// .custom-dropdown .p-dropdown .p-dropdown-label  {
-//     position: fixed;
-//     z-index: 1000;
-// }
 
-// .dropdown{
-
-// .custom-dropdown .p-dropdown {
-//     border: none !important; /* Remove the border */
-//     box-shadow: none !important; /* Remove any shadow if present */
-// }
-// // .custom-dropdown .p-dropdown .p-dropdown-label {
-// //     border: none !important; /* Remove border from the label */
-
-// // }
-
-// }
 
                 .table-wrapper {
                   overflow-x: auto;
@@ -149,46 +135,5 @@ tr>td:not(:first-child) .p-inputtext {
                   /* ensure table is wide enough */
                   table-layout: auto;
                   /* columns size to their content */
-                //   background-color: red;
-                //  min-height: 500px;
-
-                //   position: relative;
-                //     .custom-dropdown .p-dropdown  {
-                //     position: absolute;
-                //     z-index: 1000;
-                // }
                 }
-
-                .cell-input {
-                  width: 100%;
-                  box-sizing: border-box;
-                  text-align: right;
-                }
-            //     .dropdown{
-                    
-            //         background-color: red;
-                    
-            //     }
-            //     .custom-dropdown .p-dropdown{
-            //         background-color: green;
-            //     }
-            //    .p-dropdown-panel {
-            //         position: absolute;
-            //         z-index: -1;
-            //         background-color: yellow;
-                   
-            //          /* Adjust as necessary to be above other content */
-            //       }
-            // .custom-dropdown .p-dropdown {
-            //     background-color: red !important;
-            //     z-index: 1000;
-            // }
-            // .p-dropdown-panel {
-            //     z-index: 1000 !important; /* Ensure the dropdown menu appears above other elements */
-            //     background-color: yellow !important;
-            //   }
-            //   .p-dropdown-label {
-            //     font-weight: bold; /* Optional: make the label bold */
-            //     color: red !important;
-            //   }
         

@@ -133,17 +133,17 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl; posit
 
     </div>
     <div style="display: flex;width: 100%;border: 1px solid black;margin-top: 1mm;">
-      <div style="display: flex;flex-direction: column;row-gap: 1mm;width: 20%;padding: 0.5rem;">
-        <span>{{invoiceResponse?.discount}}</span>
-        <span>{{invoiceResponse?.total}}</span>
-        <span>{{invoiceResponse?.tax}}</span>
-        <span>{{netTotal}}</span>
+      <div style="display: flex;flex-direction: column;row-gap: 1mm;width: 20%;padding: 0.5rem 0;">
+        <span style="border-bottom: 1px solid black;">{{invoiceResponse?.discount}}</span>
+        <span style="border-bottom: 1px solid black;">{{invoiceResponse?.total}}</span>
+        <span style="border-bottom: 1px solid black;">{{invoiceResponse?.tax}}</span>
+        <span style="border-bottom: 1px solid black;">{{netTotal}}</span>
       </div>
-      <div style="display: flex;flex-direction: column;row-gap: 1mm;border-right: 1px solid black;padding: 0.5rem; ">
-        <span>{{"discounts_PrintInvoice" | translate}}</span>
-        <span>{{"Totalbeforetax_PrintInvoice" | translate}} </span>
-        <span>{{"Tax_PrintInvoice" | translate}}</span>
-        <span>{{"Total_PrintInvoice" | translate}}</span>
+      <div style="display: flex;flex-direction: column;row-gap: 1mm;border-right: 1px solid black;padding: 0.5rem 0;width: 80%;">
+        <span style="border-bottom: 1px solid black;width: 100%;">{{"discounts_PrintInvoice" | translate}}</span>
+        <span style="border-bottom: 1px solid black;width: 100%;">{{"Totalbeforetax_PrintInvoice" | translate}} </span>
+        <span style="border-bottom: 1px solid black;width: 100%;">{{"Tax_PrintInvoice" | translate}}</span>
+        <span style="border-bottom: 1px solid black;width: 100%;">{{"Total_PrintInvoice" | translate}}</span>
 
         <span style="background-color: #E6F5FC;padding: 1mm 10rem;">{{only}}</span>
 

@@ -191,13 +191,14 @@
   .box {
     max-height: 30rem;
     overflow-y: auto;
+    
   }
 
   & .card {
 
     display: flex;
     flex-direction: row;
-    padding: 0.75rem 0;
+    padding: 0.75rem 1rem;
     border-radius: 6px;
 
     border-color: rgba($primary-color, 0.5);
@@ -221,10 +222,10 @@
     &__image {
       width: 85px;
       height: 85px;
-      border-radius: 50%;
       clip-path: circle(50% at 50% 50%);
       position: relative;
       margin: auto;
+      border-radius: 6px;
 
       & img {
         width: fit-content;
@@ -232,6 +233,7 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        border-radius: 6px;
 
       }
     }

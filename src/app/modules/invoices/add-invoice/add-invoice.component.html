@@ -28,10 +28,11 @@
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
 
             <div class="p-float-label dropdown">
-              <p-dropdown [options]="clients" optionLabel="fullName" optionValue="uuid" [filter]="true"
-                [showClear]="true" formControlName="client"></p-dropdown>
-              <label>{{ 'clientAccount' | translate }}</label>
-            </div>
+                <p-dropdown class="custom-dropdown" [options]="clients" optionLabel="fullName" optionValue="uuid"
+                  [filter]="true" [showClear]="true" filterBy="fullName" 
+                   appendTo="body" formControlName="client" dir="ltr"></p-dropdown>
+                <label style="margin-right: 10rem;">{{ 'clientAccount' | translate }}</label>
+              </div>
           </div>
 
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-3">
