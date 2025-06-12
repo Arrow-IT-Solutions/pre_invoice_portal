@@ -1,15 +1,16 @@
 @import "../../../../assets/scss/varialbles.scss";
 
 .products {
-    padding: 1rem 1rem 1rem 0rem;
+    padding: 1rem 1rem 1rem 1rem;
     position: relative;
 
     &:lang(ar){
-        padding: 1rem 0 1rem 1rem;
+        padding: 1rem 1rem 1rem 1rem;
     }
     .typesContainer{
         max-height: 50rem;
         overflow-y: auto;
+        
     }
     .container{
         display: flex;
@@ -195,6 +196,7 @@
 .box{
   max-height: 30rem;
   overflow-y: auto;
+  padding: 0 0.5rem;
 }
   & .card {
   

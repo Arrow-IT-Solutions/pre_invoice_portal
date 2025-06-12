@@ -411,5 +411,11 @@
   "Tax_PrintInvoice" : "الضريبة",
   "RecieverName_PrintInvoice" : "اسم المستلم",
   "ReceiverSignature_PrintInvoice" : "توقيع المستلم",
-  "Totalbeforetax_PrintInvoice" : "المجموع قبل الضريبة"
+  "Totalbeforetax_PrintInvoice" : "المجموع قبل الضريبة",
+  "InvoiceFooterEn_AddSettings" : "خاتمة الفاتورة بالإنجليزية",
+  "InvoiceFooterAr_AddSettings" : "خاتمة الفاتورة بالعربية",
+  "SubTitleEn_AddSettings" : "العنوان الفرعي بالانجليزية",
+  "SubTitleAr_AddSettings" : "العنوان الفرعي بالعربية",
+  "Fax_AddSettings" : "الفاكس",
+  "Mobile_AddSettings" : "الموبايل"
 }
