@@ -418,7 +418,14 @@
   "Tax_PrintInvoice" : "Tax",
   "RecieverName_PrintInvoice" : "Reciever Name",
   "ReceiverSignature_PrintInvoice" : "Reciever Signature",
-  "Totalbeforetax_PrintInvoice" : "Total before tax"
+  "Totalbeforetax_PrintInvoice" : "Total before tax",
+  "ClientName_Client" : "Client Name",
+  "InvoiceFooterEn_AddSettings" : "Invoice Footer in English",
+  "InvoiceFooterAr_AddSettings" : "Invoice Footer in Arabic",
+  "SubTitleEn_AddSettings" : "Invoice Subtitle in English",
+  "SubTitleAr_AddSettings" : "Invoice Subtitle in Arabic",
+  "Fax_AddSettings" : "Fax",
+  "Mobile_AddSettings" : "Mobile"
 
 
 

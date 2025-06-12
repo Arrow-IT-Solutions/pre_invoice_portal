@@ -44,8 +44,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl; posit
         <img [src]="setting.logo" alt="" style="width: 100%;">
       </div> -->
     </div>
-    <div class="invoice-info" style="display: flex;justify-content: space-between;
-   padding-bottom: 0.2rem;">
+    <div class="invoice-info" style="display: flex;justify-content: space-between; padding-bottom: 0.2rem;">
       <div style="display: flex;flex-direction: column;row-gap: 0.5mm;position: absolute;top: 10rem;">
         <div style="display: flex;flex-direction: column;row-gap: 0.5mm;">
           <span>{{"VatNumber_PrintInvoice" | translate}}:</span>
@@ -61,7 +60,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl; posit
       <div
         style="display: flex;flex-direction: column;row-gap: 1mm;margin-left: 2rem;margin-bottom: 1rem; justify-content: center; align-items: center;position: absolute;top: 6rem;left: 0;">
         <div style="width: 5rem;margin-bottom: 3mm;">
-          <img src="../../../../assets/images/invoice.jpg" alt="" style="width: 100%;">
+          <img [src]="setting.logo" alt="" style="width: 100%;">
         </div>
         <div style="display: flex; column-gap: 0.5rem;">
           <span>{{"invoiceNum_PrintInvoice" | translate}}:</span>
@@ -137,9 +136,10 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);position: relative;direction: rtl; posit
         <span style="border-bottom: 1px solid black;">{{invoiceResponse?.discount}}</span>
         <span style="border-bottom: 1px solid black;">{{invoiceResponse?.total}}</span>
         <span style="border-bottom: 1px solid black;">{{invoiceResponse?.tax}}</span>
-        <span style="border-bottom: 1px solid black;">{{netTotal}}</span>
+        <span style="border-bottom: 1px solid black;">{{ netTotal?.toFixed(3) }}</span>
       </div>
-      <div style="display: flex;flex-direction: column;row-gap: 1mm;border-right: 1px solid black;padding: 0.5rem 0;width: 80%;">
+      <div
+        style="display: flex;flex-direction: column;row-gap: 1mm;border-right: 1px solid black;padding: 0.5rem 0;width: 80%;">
         <span style="border-bottom: 1px solid black;width: 100%;">{{"discounts_PrintInvoice" | translate}}</span>
         <span style="border-bottom: 1px solid black;width: 100%;">{{"Totalbeforetax_PrintInvoice" | translate}} </span>
         <span style="border-bottom: 1px solid black;width: 100%;">{{"Tax_PrintInvoice" | translate}}</span>

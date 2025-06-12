@@ -427,9 +427,19 @@ export class AddInvoiceComponent {
   }
 
   onItemChange(item: Product) {
-    item.total = (item.quantity
+    const raw = item.total = (item.quantity
       * item.price)
       * (1 + item.tax / 100) - (item.discount);
+
+
+    const roundedTotal = Math.round(raw * 10000) / 10000;
+    item.total = roundedTotal;
+
+    item.tax = Math.round(item.tax * 10000) / 10000;
+    item.price = Math.round(item.price * 10000) / 10000;
+    item.quantity = Math.round(item.quantity * 10000) / 10000;
+    item.discount = Math.round(item.discount * 10000) / 10000;
+
     this.calculateTotals();
   }
 
@@ -451,6 +461,12 @@ export class AddInvoiceComponent {
     );
 
     this.netTotal = this.total - this.discount + this.tax;
+
+
+    this.discount = parseFloat(this.discount.toFixed(4));
+    this.total = parseFloat(this.total.toFixed(4));
+    this.tax = parseFloat(this.tax.toFixed(4));
+    this.netTotal = parseFloat(this.netTotal.toFixed(4));
 
 
   }
